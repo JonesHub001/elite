@@ -18,6 +18,14 @@ import av5 from '../assets/images/avpup5.jpg'
 import av55 from '../assets/images/avpup55.jpg'
 import stud1 from '../assets/images/stud1.jpeg'
 import stud2 from '../assets/images/Stud2.jpg'
+import o1 from '../assets/images/offspring/1.jpg'
+import o2 from '../assets/images/offspring/2.jpg'
+import o3 from '../assets/images/offspring/3.jpg'
+import o4 from '../assets/images/offspring/4.jpg'
+import o5 from '../assets/images/offspring/5.jpg'
+import o6 from '../assets/images/offspring/6.jpg'
+
+
 const availablePuppies: Puppy[] = [
   {
     id: '1',
@@ -32,8 +40,8 @@ const availablePuppies: Puppy[] = [
       dam: 'Queen Victoria'
     },
     gender: 'Male',
-    dateOfBirth: '2024-01-15',
-    color: 'Blue',
+    dateOfBirth: '12-15-2024',
+    color: 'Tri Merle',
     status: 'Available',
     description: 'Exceptional male puppy with perfect structure and temperament. Health tested and ready for his forever home.'
   },
@@ -50,7 +58,7 @@ const availablePuppies: Puppy[] = [
       dam: 'Princess Luna'
     },
     gender: 'Female',
-    dateOfBirth: '2024-01-20',
+    dateOfBirth: '01-23-2025',
     color: 'Fawn',
     status: 'Reserved',
     description: 'Beautiful female with excellent confirmation and loving personality. From our champion bloodlines.'
@@ -68,7 +76,7 @@ const availablePuppies: Puppy[] = [
       dam: 'Crystal Ice'
     },
     gender: 'Male',
-    dateOfBirth: '2024-02-01',
+    dateOfBirth: '2025-03-01',
     color: 'Blue Tri',
     status: 'Available',
     description: 'Stunning male puppy with exceptional bone structure and a playful personality. Perfect show prospect.'
@@ -85,7 +93,7 @@ const availablePuppies: Puppy[] = [
       dam: 'Sapphire Dream'
     },
     gender: 'Female',
-    dateOfBirth: '2024-02-05',
+    dateOfBirth: '02-01-2025',
     color: 'Lilac',
     status: 'Available',
     description: 'Rare lilac female with perfect compact structure. Exceptional temperament and great with children.'
@@ -102,7 +110,7 @@ const availablePuppies: Puppy[] = [
       dam: 'Queen Victoria'
     },
     gender: 'Male',
-    dateOfBirth: '2024-01-25',
+    dateOfBirth: '11-02-2025',
     color: 'Champagne',
     status: 'Reserved',
     description: 'Muscular male puppy with champion bloodlines. Reserved for an experienced show home.'
@@ -134,16 +142,16 @@ const studs = [
     studFee: '$2,500',
     offspring: [
       {
-        image: 'https://images.unsplash.com/photo-1583511655826-05700442b327?w=500',
-        caption: 'Blue Steel - 8 months'
+        image: o1,
+        caption: '  Royal Steel - 3 months'
       },
       {
-        image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500',
-        caption: 'Royal Flush - 1 year'
+        image: o2,
+        caption: 'Royal Flush - 3 months'
       },
       {
-        image: 'https://images.unsplash.com/photo-1583337426008-2fef51aa2cc4?w=500',
-        caption: 'Diamond - 6 months'
+        image: o3,
+        caption: 'Diamond Royal - 3 months'
       }
     ]
   },
@@ -171,15 +179,15 @@ const studs = [
     studFee: '$3,000',
     offspring: [
       {
-        image: 'https://images.unsplash.com/photo-1583511666407-5f06533f2113?w=500',
-        caption: 'Thunder - 1 year'
+        image: o4,
+        caption: 'Thunder - 4 months'
       },
       {
-        image: 'https://images.unsplash.com/photo-1583337130423-937f96eef0a9?w=500',
-        caption: 'Storm - 9 months'
+        image: o5,
+        caption: 'Storm - 3 months'
       },
       {
-        image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500',
+        image: o6,
         caption: 'Lightning - 7 months'
       }
     ]
@@ -333,7 +341,7 @@ export default function AvailablePuppies() {
                       )}
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 gap-4 p-6 bg-gray-50">
+                  <div id='stud' className="grid grid-cols-1 gap-4 p-6 bg-gray-50">
                     {puppy.images.map((image, index) => (
                       <div key={index} className="overflow-hidden rounded-lg shadow-md group">
                         <img
@@ -352,7 +360,7 @@ export default function AvailablePuppies() {
       </div>
 
       {/* Stud Service */}
-      <div className="bg-gray-50 py-16">
+      <div  className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-blue-600 font-semibold text-sm tracking-wider uppercase">Elite Breeding Program</span>

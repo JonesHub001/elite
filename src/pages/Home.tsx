@@ -493,8 +493,8 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-semibold">The Johnson Family</p>
-                  <p className="text-sm opacity-90">With Zeus, 2 years old</p>
+                  <p className="font-semibold">Rocky driving home from the vet</p>
+                  <p className="text-sm opacity-90"> 4 months old</p>
                 </div>
               </div>
             </div>
@@ -523,8 +523,8 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-semibold">Park Adventures</p>
-                  <p className="text-sm opacity-90">Diamond's first picnic</p>
+                  <p className="font-semibold">Home Adventures</p>
+                  <p className="text-sm opacity-90">Drake's first day at home</p>
                 </div>
               </div>
             </div>
@@ -537,8 +537,8 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-semibold">Birthday Fun</p>
-                  <p className="text-sm opacity-90">Max turns 1!</p>
+                  <p className="font-semibold"> Meet up Fun</p>
+                  <p className="text-sm opacity-90">Max meets his new best friend!</p>
                 </div>
               </div>
             </div>
@@ -552,8 +552,8 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-semibold">Training Day</p>
-                  <p className="text-sm opacity-90">Luna's progress</p>
+                  <p className="font-semibold">Lovely Day</p>
+                  <p className="text-sm opacity-90">Drake making this couple so happy</p>
                 </div>
               </div>
             </div>
@@ -580,8 +580,8 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-semibold">Beach Day</p>
-                  <p className="text-sm opacity-90">Thor's first swim</p>
+                  <p className="font-semibold">Good Day</p>
+                  <p className="text-sm opacity-90">Thor's daddy and his best friend</p>
                 </div>
               </div>
             </div>
@@ -609,7 +609,7 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-semibold">Graduation Day</p>
+                  <p className="font-semibold">Homecoming Day</p>
                   <p className="text-sm opacity-90">King's training success</p>
                 </div>
               </div>
@@ -734,7 +734,7 @@ export default function Home() {
                   <Link to="/puppies" className="text-slate-400 hover:text-white transition-colors">Puppy Sales</Link>
                 </li>
                 <li>
-                  <Link to="/studs" className="text-slate-400 hover:text-white transition-colors">Stud Services</Link>
+                  <Link to="puppies/#studs" className="text-slate-400 hover:text-white transition-colors">Stud Services</Link>
                 </li>
                
               </ul>
