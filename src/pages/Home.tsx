@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NewsletterForm from '../components/NewsletterForm';
-import { Star, Shield, Heart, Award, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, Shield, Heart, Award, ChevronLeft, ChevronRight, Check, Medal } from 'lucide-react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -84,9 +84,7 @@ export default function Home() {
       <div 
         className="relative h-[600px] bg-cover bg-center"
         style={{
-          // Update with your hero image:
-          // backgroundImage: `url(${heroImage})`
-          backgroundImage: 'url(https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=1600&auto=format&fit=crop&q=80&ixlib=rb-4.0.3)' // Replace with your image
+          backgroundImage: 'url(https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=1600&auto=format&fit=crop&q=80&ixlib=rb-4.0.3)'
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50" />
@@ -105,6 +103,89 @@ export default function Home() {
             >
               View Available Puppies
             </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Welcome Section */}
+      <div className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Welcome to Elite Bully Productions</h2>
+            <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+              Micro American Bully breeder in LA with ABKC Micro American Bully puppies available for sale as well as stud service.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+            <div className="space-y-6">
+              <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Our Breeding Philosophy</h3>
+                <p className="text-gray-600">
+                  Health, structure, and temperament come first and foremost when choosing mating pairs. We specialize in producing only the finest ABKC registered Micro Bullies with:
+                </p>
+                <ul className="mt-4 space-y-2">
+                  <li className="flex items-start">
+                    <Check className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <span>Rare coat colors</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <span>Small and compact structure</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <span>Affectionate personalities</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
+                <h3 className="text-xl font-semibold text-blue-900 mb-3">Quality Assurance</h3>
+                <p className="text-blue-800">
+                  We achieve our goal of producing quality Micro American Bullies through:
+                </p>
+                <ul className="mt-4 space-y-2 text-blue-800">
+                  <li className="flex items-start">
+                    <Shield className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <span>Rigorous health and genetic testing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Shield className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <span>Selective breeding practices</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Shield className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                    <span>World-class breeding program standards</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-lg border border-gray-100">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Our Vision</h3>
+                <p className="text-gray-600 mb-4">
+                  Our vision is to provide homes with lifelong companions. To actualize this vision we established our world class breeding program with the highest standards to ensure the absolute best circumstances for all of our puppies and adopting families.
+                </p>
+                <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-4"></div>
+                <p className="text-gray-600">
+                  Our ethical practices and high standards combined with our deep love and respect for this breed really sets our puppies apart.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 text-center">
+                  <Award className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+                  <h4 className="font-semibold text-gray-900">ABKC Registered</h4>
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 text-center">
+                  <Medal className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+                  <h4 className="font-semibold text-gray-900">Premium Quality</h4>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -130,7 +211,52 @@ export default function Home() {
       {/* Featured Puppies */}
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Puppies</h2>
+          <h2 className="text-3xl font-bold text-center mb-6">American Bully Puppies for Sale and Planned Breedings</h2>
+          
+          <div className="max-w-4xl mx-auto mb-12 space-y-6 text-gray-700">
+            <p className="leading-relaxed">
+              From my loving arms to yours, an Elite Bully baby comes home with a veterinarians exam, first set of vaccinations, microchip, multiple deworming, written sales contract with health guarantee, and lifetime breeders support. Elite Bully puppies are raised in home and know nothing but love and compassion from their birth until they come home to you.
+            </p>
+            
+            <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
+              <h3 className="text-xl font-semibold text-blue-900 mb-3">Our Breeding Methods</h3>
+              <p className="mb-4">
+                I practice Early Neurological Stimulation. This a method of stimulating the nervous systems and firmly believe this method encourages a stable temperament. When done properly puppies have shown to have stronger heart beats, improved cardiovascular performance, stronger adrenal glands and more tolerance to stress.
+              </p>
+              <p>
+                I take pride in offering my puppies high quality care, a clean environment with lots of simulation, enrichment and with lots of love. I also included the "Rule of 7" method and have adopted "Puppy Culture" into our breeding program. Puppies are fed high quality puppy food and a human-grade cooked diet that meets their nutritional needs.
+              </p>
+            </div>
+
+            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Lifetime Support</h3>
+              <p>
+                Unlike other breeders, we are in it for the long run and provide support and counsel even after my puppies leave my care and join their families. And I truly look forward to updates from my puppy families throughout their life.
+              </p>
+            </div>
+
+            <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-100">
+              <h3 className="text-xl font-semibold text-yellow-900 mb-3">Puppy Placement Policy</h3>
+              <p className="mb-4">
+                I know my puppy owners like to take preference in colors and genders, but we ask for you to keep an open mind in allowing me to help match you and your family with the best fit puppy. Matching puppies based on their temperament, personality, drive and needs is so very important to ensuring puppies are adopted by people they're compatible with.
+              </p>
+              <p>
+                Most ethical breeders adopt this practice as this ensures our dogs and puppies are less likely to be returned and adopting from an ethical breeder reduces the risk of them being abandoned.
+              </p>
+            </div>
+
+            <div className="bg-red-50 p-6 rounded-lg border border-red-100">
+              <h3 className="text-xl font-semibold text-red-900 mb-3">Important Notice</h3>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>I ALWAYS prefer pet homes, with spay/neuter contracts.</li>
+                <li>I retain the right to refuse sale to anyone for any reason.</li>
+                <li>Puppies are placed in homes on a "best fit" basis, NOT first come first serve.</li>
+                <li>No puppy will be held or reserved until a deposit, puppy application, and signed sales contract is received by Elite Bullies.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 className="text-2xl font-bold text-center mb-8">Featured Puppies</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               // Replace with your puppy data
@@ -279,7 +405,17 @@ export default function Home() {
       </div>
 
       {/* Newsletter Section */}
-      <NewsletterForm />
+      <div className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Connected</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Sign up with your email address today to be among the first to know about exciting new litters, available puppies, comprehensive stud services, a variety of available dogs, and all the wonderful things that we are doing here at Elite Bullies. Your subscription will ensure that you stay informed and connected with our community.
+            </p>
+          </div>
+          <NewsletterForm />
+        </div>
+      </div>
     </div>
   );
 }
