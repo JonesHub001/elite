@@ -54,12 +54,12 @@ export default function ApplicationStatus() {
       } else {
         setApplicationData(data);
         
-        // Send status email
         const emailResponse = await sendStatusEmail({
-          to_email: data.email,
+          email: data.email,
           to_name: `${data.first_name} ${data.last_name}`,
           application_status: data.status,
-          next_steps: getNextSteps(data.status)
+          next_steps: getNextSteps(data.status),
+          reply_to: data.email
         });
 
         if (emailResponse.success) {
