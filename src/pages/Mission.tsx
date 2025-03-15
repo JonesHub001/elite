@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Heart, Award, CheckCircle } from 'lucide-react';
+import { Shield, Heart, Award, CheckCircle, Check } from 'lucide-react';
 import NewsletterForm from '../components/NewsletterForm';
 
 const healthTests = [
@@ -12,9 +12,28 @@ const healthTests = [
   'Regular Veterinary Check-ups'
 ];
 
+const fadeInElements = () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).classList.add('animate-fadeIn');
+        (entry.target as HTMLElement).style.opacity = '1';
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '50px' });
+
+  document.querySelectorAll('.fade-in').forEach((element) => {
+    observer.observe(element);
+  });
+};
+
 export default function Mission() {
+  useEffect(() => {
+    fadeInElements();
+  }, []);
+
   return (
-    <div>
+    <div className="animate-fadeIn">
       <div className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">

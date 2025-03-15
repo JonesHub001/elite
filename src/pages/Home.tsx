@@ -6,9 +6,28 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import BackToTop from '../components/BackToTop';
+
+// Import your images here
 import heroImage from '../assets/images/hero-bg.jpg';
 import heroVideo from '../assets/images/hero-video.mp4';
-// Import your images here
+import f1 from '../assets/images/Ft1.jpg'
+import f2 from '../assets/images/Ft2.jpg'
+import f3 from '../assets/images/Ft3.jpg'
+import p1 from '../assets/images/happyFam/1.jpg'
+import p2 from '../assets/images/happyFam/2.jpg'
+import p3 from '../assets/images/happyFam/3.jpg'
+import p4 from '../assets/images/happyFam/4.jpg'
+import p5 from '../assets/images/happyFam/5.jpg'
+import p6 from '../assets/images/happyFam/6.jpg'
+import p7 from '../assets/images/happyFam/7.jpg'
+import p8 from '../assets/images/happyFam/8.jpg'
+import p9 from '../assets/images/happyFam/9.jpg'
+import p10 from '../assets/images/happyFam/10.jpg'
+import p11 from '../assets/images/happyFam/11.jpg'
+import p12 from '../assets/images/happyFam/12.jpg'
+
+
+
 // Example:
 // import heroImage from '../assets/images/hero-background.jpg';
 // import puppy1 from '../assets/images/puppy1.jpg';
@@ -36,11 +55,9 @@ const testimonials = [
   {
     name: 'John D.',
     location: 'California',
-    // Update the image path to your local image:
-    // image: testimonial1,
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3', // Replace with your image
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
     content: 'The entire experience was incredible. Our puppy is healthy, well-socialized, and exactly what we were looking for.',
-    rating: 5
+    rating: 4
   },
   {
     name: 'Sarah M.',
@@ -54,7 +71,7 @@ const testimonials = [
     location: 'Florida',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
     content: 'The attention to detail in breeding and raising these puppies is outstanding. Our bully is not just beautiful but also has an amazing temperament.',
-    rating: 5
+    rating: 3
   },
   {
     name: 'Emily W.',
@@ -68,7 +85,7 @@ const testimonials = [
     location: 'Arizona',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
     content: 'The health testing and guarantees gave us peace of mind. Our puppy is perfect in every way!',
-    rating: 5
+    rating: 4
   },
   {
     name: 'Lisa P.',
@@ -357,21 +374,21 @@ export default function Home() {
               {[
                 {
                   id: 1,
-                  name: 'Blue Steel',
-                  image: 'https://images.unsplash.com/photo-1583511655826-05700442b327?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+                  name: 'Tri Merle',
+                  image: f1,
                   details: 'Male • 12 weeks • Blue'
                 },
                 {
                   id: 2,
                   name: 'Crystal',
-                  image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+                  image: f2,
                   details: 'Female • 10 weeks • Merle • Blue Eyes'
                 },
                 {
                   id: 3,
                   name: 'Titan',
-                  image: 'https://images.unsplash.com/photo-1583511666407-5f06533f2113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-                  details: 'Male • 11 weeks • Blue • Pocket'
+                  image: f3,
+                  details: 'Male • 11 weeks • Brown • Pocket'
                 }
               ].map((puppy, index) => (
                 <div 
@@ -458,69 +475,199 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Client Gallery */}
-      <div className="py-32">
+      {/* Client Gallery Section */}
+      <section className="py-16 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-20 fade-in opacity-0 transition-all duration-1000">
-            Happy Families with Their Bullies
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {[
-              {
-                url: 'https://images.unsplash.com/photo-1583512603806-077998240c7a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-                caption: 'Max with his new family'
-              },
-              {
-                url: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-                caption: 'Luna enjoying the park'
-              },
-              {
-                url: 'https://images.unsplash.com/photo-1583337426008-2fef51aa2cc4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-                caption: 'Rocky at home'
-              },
-              {
-                url: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-                caption: 'Bella with her new toys'
-              },
-              {
-                url: 'https://images.unsplash.com/photo-1583511666407-5f06533f2113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-                caption: 'Zeus on his first walk'
-              },
-              {
-                url: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-                caption: 'Daisy playing in the yard'
-              },
-              {
-                url: 'https://images.unsplash.com/photo-1583511666407-5f06533f2113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-                caption: 'Duke with his best friend'
-              },
-              {
-                url: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-                caption: 'Milo at the beach'
-              },
-              {
-                url: 'https://images.unsplash.com/photo-1583512603806-077998240c7a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-                caption: 'Ruby celebrating her birthday'
-              }
-            ].map((image, index) => (
-              <div 
-                key={index} 
-                className="relative group overflow-hidden rounded-xl shadow-md transform transition-all duration-700 hover:scale-[1.02] fade-in opacity-0"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <img
-                  src={image.url}
-                  alt={image.caption}
-                  className="w-full h-80 object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
-                  <p className="text-white text-lg font-medium text-center">{image.caption}</p>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-slate-900">Happy Families</h2>
+            <p className="mt-4 text-lg text-slate-600">Our puppies bringing joy to their forever homes</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+            {/* Large Images */}
+            <div className="relative col-span-2 row-span-2 group overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={p1}
+                alt="Happy family with their bully"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">The Johnson Family</p>
+                  <p className="text-sm opacity-90">With Zeus, 2 years old</p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Medium Images */}
+            <div className="relative row-span-2 group overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={p2}
+                alt="Child playing with puppy"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">Sarah & Rocky</p>
+                  <p className="text-sm opacity-90">Best friends forever</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Small Images */}
+            <div className="relative group overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={p3}
+                alt="Family picnic with dog"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">Park Adventures</p>
+                  <p className="text-sm opacity-90">Diamond's first picnic</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative group overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={p4}
+                alt="Birthday celebration"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">Birthday Fun</p>
+                  <p className="text-sm opacity-90">Max turns 1!</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Second Row */}
+            <div className="relative group overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={p5}
+                alt="Training session"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">Training Day</p>
+                  <p className="text-sm opacity-90">Luna's progress</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative col-span-2 row-span-2 group overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={p6}
+                alt="Family portrait with dog"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">The Miller Family</p>
+                  <p className="text-sm opacity-90">With Storm, our gentle giant</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative group overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={p7}
+                alt="Beach day"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">Beach Day</p>
+                  <p className="text-sm opacity-90">Thor's first swim</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Third Row */}
+            <div className="relative row-span-2 group overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={p8}
+                alt="Holiday celebration"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">Holiday Joy</p>
+                  <p className="text-sm opacity-90">Ruby's first Christmas</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative group overflow-hidden rounded-xl shadow-lg">
+              <img
+                  src={p9}
+                alt="Graduation day"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">Graduation Day</p>
+                  <p className="text-sm opacity-90">King's training success</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative group overflow-hidden rounded-xl shadow-lg">
+              <img
+                    src={p10}
+                alt="Park playtime"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">Park Fun</p>
+                  <p className="text-sm opacity-90">Bella making friends</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Adding 11th image */}
+            <div className="relative group overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={p11}
+                alt="Family celebration"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">Family Moments</p>
+                  <p className="text-sm opacity-90">Atlas's special day</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Adding 12th image */}
+            <div className="relative group overflow-hidden rounded-xl shadow-lg">
+              <img
+                src={p12}
+                alt="Outdoor adventure"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="font-semibold">Adventure Time</p>
+                  <p className="text-sm opacity-90">Shadow exploring nature</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-slate-600 mb-6">Join our growing family of happy pet owners</p>
+            <Link to="/available-puppies" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-blue-700 hover:scale-105 hover:shadow-lg">
+              Find Your Perfect Puppy
+            </Link>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Newsletter Section */}
       <div className="py-32 bg-slate-50">
@@ -601,13 +748,13 @@ export default function Home() {
                   <svg className="h-6 w-6 text-slate-400 mr-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span className="text-slate-400">(555) 123-4567</span>
+                  <span className="text-slate-400">2324454445</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="h-6 w-6 text-slate-400 mr-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <span className="text-slate-400">info@elitebullies.com</span>
+                  <span className="text-slate-400">elitebullies@gmail.com</span>
                 </li>
                 <li className="flex items-start">
                   <svg className="h-6 w-6 text-slate-400 mr-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -626,15 +773,7 @@ export default function Home() {
               <p className="text-slate-400 text-sm">
                 © {new Date().getFullYear()} Elite Bullies. All rights reserved.
               </p>
-              <div className="flex space-x-6 mt-4 md:mt-0">
-                <Link to="/privacy" className="text-sm text-slate-400 hover:text-white transition-colors">
-                  Privacy Policy
-                </Link>
-                <Link to="/terms" className="text-sm text-slate-400 hover:text-white transition-colors">
-                  Terms of Service
-                </Link>
-               
-              </div>
+           
             </div>
           </div>
         </div>

@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Award, Star, Phone, MessageSquare, Clock, Check, AlertCircle, Medal } from 'lucide-react';
 import NewsletterForm from '../components/NewsletterForm';
 import type { Puppy } from '../types';
-
+import av1 from '../assets/images/avpup1.jpg'
+import av11 from '../assets/images/avpup11.jpg'
+import av111 from '../assets/images/avpup111.jpg'
+import av2 from '../assets/images/avpup2.jpg'
+import av22 from '../assets/images/avpup22.jpg'
+import av222 from '../assets/images/avpup222.jpg'
+import av3 from '../assets/images/avpup3.jpg'
+import av33 from '../assets/images/avpup33.jpg'
+import av333 from '../assets/images/avpup333.jpg'
+import av4 from '../assets/images/avpup4.jpg'
+import av44 from '../assets/images/avpup44.jpg'
+import av5 from '../assets/images/avpup5.jpg'
+import av55 from '../assets/images/avpup55.jpg'
+import stud1 from '../assets/images/stud1.jpeg'
+import stud2 from '../assets/images/Stud2.jpg'
 const availablePuppies: Puppy[] = [
   {
     id: '1',
     name: 'Blue Steel',
     images: [
-      'https://images.unsplash.com/photo-1583511655826-05700442b327?w=800',
-      'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=800',
-      'https://images.unsplash.com/photo-1583511666407-5f06533f2113?w=800'
+      av1,
+      av11,
+      av111
     ],
     parents: {
       sire: 'Champion Zeus',
@@ -27,9 +41,9 @@ const availablePuppies: Puppy[] = [
     id: '2',
     name: 'Ruby',
     images: [
-      'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800',
-      'https://images.unsplash.com/photo-1583337130420-cbcc8e12de0d?w=800',
-      'https://images.unsplash.com/photo-1583337130423-937f96eef0a9?w=800'
+      av2,
+      av22,
+      av222
     ],
     parents: {
       sire: 'King Atlas',
@@ -40,6 +54,58 @@ const availablePuppies: Puppy[] = [
     color: 'Fawn',
     status: 'Reserved',
     description: 'Beautiful female with excellent confirmation and loving personality. From our champion bloodlines.'
+  },
+  {
+    id: '3',
+    name: 'Thunder',
+    images: [
+      av3,
+      av33,
+      av333
+    ],
+    parents: {
+      sire: 'Champion Zeus',
+      dam: 'Crystal Ice'
+    },
+    gender: 'Male',
+    dateOfBirth: '2024-02-01',
+    color: 'Blue Tri',
+    status: 'Available',
+    description: 'Stunning male puppy with exceptional bone structure and a playful personality. Perfect show prospect.'
+  },
+  {
+    id: '4',
+    name: 'Diamond',
+    images: [
+      av4,
+      av44
+    ],
+    parents: {
+      sire: 'King Atlas',
+      dam: 'Sapphire Dream'
+    },
+    gender: 'Female',
+    dateOfBirth: '2024-02-05',
+    color: 'Lilac',
+    status: 'Available',
+    description: 'Rare lilac female with perfect compact structure. Exceptional temperament and great with children.'
+  },
+  {
+    id: '5',
+    name: 'Rocky',
+    images: [
+      av5,
+      av55
+    ],
+    parents: {
+      sire: 'Royal Flash',
+      dam: 'Queen Victoria'
+    },
+    gender: 'Male',
+    dateOfBirth: '2024-01-25',
+    color: 'Champagne',
+    status: 'Reserved',
+    description: 'Muscular male puppy with champion bloodlines. Reserved for an experienced show home.'
   }
 ];
 
@@ -52,7 +118,7 @@ const studs = [
     color: 'Blue Tri',
     weight: '120 lbs',
     height: '22 inches',
-    image: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=800',
+    image: stud1,
     achievements: [
       'Grand Champion Title 2023',
       'Best in Show - American Bully Kennel Club 2022',
@@ -89,7 +155,7 @@ const studs = [
     color: 'Champagne',
     weight: '110 lbs',
     height: '21 inches',
-    image: 'https://images.unsplash.com/photo-1583337130420-cbcc8e12de0d?w=800',
+    image: stud2,
     achievements: [
       'International Champion 2023',
       'European Winner 2022',
@@ -120,9 +186,28 @@ const studs = [
   }
 ];
 
+const fadeInElements = () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).classList.add('animate-fadeIn');
+        (entry.target as HTMLElement).style.opacity = '1';
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '50px' });
+
+  document.querySelectorAll('.fade-in').forEach((element) => {
+    observer.observe(element);
+  });
+};
+
 export default function AvailablePuppies() {
+  useEffect(() => {
+    fadeInElements();
+  }, []);
+
   return (
-    <div>
+    <div className="animate-fadeIn">
       {/* Professional Header Banner */}
       <div className="bg-blue-600 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -190,15 +275,18 @@ export default function AvailablePuppies() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-16">
             {availablePuppies.map((puppy) => (
-              <div key={puppy.id} className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
+              <div 
+                key={puppy.id} 
+                className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="p-6">
                     <div className="flex items-center mb-4">
-                      <h2 className="text-2xl font-bold">{puppy.name}</h2>
-                      <span className={`ml-3 px-3 py-1 rounded-full text-sm ${
+                      <h2 className="text-2xl font-bold transition-colors duration-300 group-hover:text-blue-600">{puppy.name}</h2>
+                      <span className={`ml-3 px-3 py-1 rounded-full text-sm transition-all duration-300 ${
                         puppy.status === 'Available' 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-yellow-100 text-yellow-800'
+                          ? 'bg-green-100 text-green-800 group-hover:bg-green-200' 
+                          : 'bg-yellow-100 text-yellow-800 group-hover:bg-yellow-200'
                       }`}>
                         {puppy.status}
                       </span>
@@ -238,7 +326,7 @@ export default function AvailablePuppies() {
                       {puppy.status === 'Available' && (
                         <Link
                           to="/apply"
-                          className="btn-primary inline-block mt-4"
+                          className="btn-primary inline-block mt-4 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
                         >
                           Apply to Adopt
                         </Link>
@@ -247,12 +335,13 @@ export default function AvailablePuppies() {
                   </div>
                   <div className="grid grid-cols-1 gap-4 p-6 bg-gray-50">
                     {puppy.images.map((image, index) => (
-                      <img
-                        key={index}
-                        src={image}
-                        alt={`${puppy.name} - Photo ${index + 1}`}
-                        className="w-full h-64 object-cover rounded-lg shadow-md"
-                      />
+                      <div key={index} className="overflow-hidden rounded-lg shadow-md group">
+                        <img
+                          src={image}
+                          alt={`${puppy.name} - Photo ${index + 1}`}
+                          className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -346,7 +435,7 @@ export default function AvailablePuppies() {
                         </div>
                       </div>
                       <a
-                        href="mailto:info@elitebullies.com"
+                        href="mailto:elitebullies@gmail.com"
                         className="btn-primary"
                       >
                         Inquire About Breeding

@@ -1,0 +1,204 @@
+Elite Bullies Backend Documentation
+================================
+
+1. Database Structure
+-------------------
+
+A. Applications Table
+--------------------
+- id: UUID (Primary Key)
+- submission_date: TIMESTAMP
+- status: ENUM ('pending', 'approved', 'rejected', 'waitlist')
+- personal_info: JSON {
+    firstName: STRING,
+    lastName: STRING,
+    email: STRING,
+    phone: STRING
+  }
+- address_info: JSON {
+    address: STRING,
+    city: STRING,
+    state: STRING,
+    zip: STRING
+  }
+- home_environment: JSON {
+    homeType: STRING,
+    yard: STRING,
+    familySize: STRING,
+    workSchedule: STRING
+  }
+- experience: JSON {
+    previousExperience: STRING,
+    currentPets: STRING
+  }
+- preferences: JSON {
+    preferredGender: STRING,
+    comments: STRING
+  }
+- review_notes: TEXT
+- last_updated: TIMESTAMP
+- admin_reviewer: STRING
+
+B. Newsletter Subscribers Table
+-----------------------------
+- id: UUID (Primary Key)
+- email: STRING (Unique)
+- subscription_date: TIMESTAMP
+- status: ENUM ('active', 'unsubscribed')
+- interests: JSON {
+    puppyUpdates: BOOLEAN,
+    breedingProgram: BOOLEAN,
+    events: BOOLEAN
+  }
+- last_email_sent: TIMESTAMP
+
+2. API Endpoints
+--------------
+
+A. Application Endpoints
+----------------------
+POST /api/applications
+- Handles new puppy applications
+- Validates all required fields
+- Sends confirmation email to applicant
+- Notifies admin of new application
+
+GET /api/applications/:id
+- Retrieves specific application details
+- Requires authentication
+- Used by admin dashboard
+
+PATCH /api/applications/:id
+- Updates application status
+- Requires admin authentication
+- Triggers email notifications based on status change
+
+B. Newsletter Endpoints
+---------------------
+POST /api/newsletter/subscribe
+- Handles newsletter subscriptions
+- Validates email format
+- Checks for duplicate subscriptions
+- Sends welcome email
+
+POST /api/newsletter/unsubscribe
+- Handles unsubscribe requests
+- Updates subscriber status
+- Sends confirmation email
+
+3. Security Measures
+------------------
+- API Rate Limiting: Max 100 requests per IP per hour
+- Input Sanitization: All form inputs sanitized before storage
+- CORS Configuration: Restricted to authorized domains
+- JWT Authentication: Required for admin access
+- Data Encryption: Sensitive data encrypted at rest
+- SSL/TLS: All API communications over HTTPS
+
+4. Email Notifications
+--------------------
+A. Application Emails
+- Application Received: Immediate confirmation to applicant
+- Status Updates: Notify when application status changes
+- Follow-up: Automated follow-up for incomplete applications
+- Admin Alerts: New application notifications to admin team
+
+B. Newsletter Emails
+- Welcome Email: Sent upon subscription
+- Monthly Updates: Regular newsletter content
+- Special Announcements: Puppy availability, events
+- Unsubscribe Confirmation: Sent when user unsubscribes
+
+5. Data Processing
+----------------
+A. Application Processing
+- Automated initial screening
+- Risk assessment scoring
+- Previous application history check
+- Geographic location validation
+- Reference verification queuing
+
+B. Newsletter Management
+- Email validation and cleaning
+- Bounce handling
+- Engagement tracking
+- Automated list cleaning
+- Segmentation based on interests
+
+6. Admin Features
+---------------
+- Dashboard for application review
+- Bulk application processing
+- Email template management
+- Newsletter campaign creation
+- Analytics and reporting
+- User activity logging
+
+7. Data Retention
+---------------
+- Applications: 2 years after last update
+- Newsletter Data: Until unsubscribe + 30 days
+- Activity Logs: 1 year
+- Email History: 6 months
+
+8. Compliance
+-----------
+- GDPR Compliance
+- CCPA Compliance
+- Data Privacy Standards
+- Regular Security Audits
+- Automated Backup System
+
+9. Integration Points
+------------------
+- Email Service Provider (SendGrid/Mailchimp)
+- Payment Processing (Stripe)
+- Cloud Storage (AWS S3)
+- SMS Notifications (Twilio)
+- Analytics (Google Analytics)
+
+10. Error Handling
+----------------
+- Automated error logging
+- Failed submission retry logic
+- Error notification system
+- Fallback procedures
+- System health monitoring
+
+11. Performance Metrics
+---------------------
+- Average response time: <200ms
+- Uptime target: 99.9%
+- Email delivery rate: >98%
+- Form completion rate tracking
+- User engagement analytics
+
+12. Backup & Recovery
+-------------------
+- Daily automated backups
+- Point-in-time recovery
+- Geo-redundant storage
+- 30-day backup retention
+- Disaster recovery plan
+
+Implementation Timeline
+----------------------
+Phase 1 (Week 1-2):
+- Basic API setup
+- Database implementation
+- Form submission handling
+
+Phase 2 (Week 3-4):
+- Email notification system
+- Admin dashboard
+- Security implementation
+
+Phase 3 (Week 5-6):
+- Newsletter system
+- Analytics integration
+- Testing and optimization
+
+Phase 4 (Week 7-8):
+- Advanced features
+- Documentation
+- Production deployment 

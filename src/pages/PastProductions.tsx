@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NewsletterForm from '../components/NewsletterForm';
-
+import { MessageCircle, Phone } from 'lucide-react';
+// import images
+import p1 from '../assets/images/pastBEN.jpeg'
+import p2 from '../assets/images/pastDAPHNE.png'
+import p3 from '../assets/images/pastLotus.png'
+import p4 from '../assets/images/pastPOPPY.png'
+import p5 from '../assets/images/pastRUE.png'
+import p6 from '../assets/images/pastZEN.jpeg'
+import p7 from '../assets/images/past_ROMAN.png'
+import p8 from '../assets/images/pups_and_woman.jpeg'
 const pastLitters = [
   {
     id: '1',
@@ -11,7 +20,7 @@ const pastLitters = [
     date: 'Fall 2023',
     description: 'Exceptional litter producing multiple show quality puppies. All puppies placed in loving homes.',
     images: [
-      'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800'
+      p1
     ]
   },
   {
@@ -23,7 +32,7 @@ const pastLitters = [
     date: 'Summer 2023',
     description: 'Beautiful litter with excellent structure and temperament. Several puppies went on to become champions.',
     images: [
-      'https://images.unsplash.com/photo-1583337130420-cbcc8e12de0d?w=800'
+      p2
     ]
   },
   {
@@ -35,7 +44,7 @@ const pastLitters = [
     date: 'Spring 2023',
     description: 'Outstanding litter featuring rare colors and exceptional bone structure. Perfect examples of the breed standard.',
     images: [
-      'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=800'
+      p3
     ]
   },
   {
@@ -47,7 +56,7 @@ const pastLitters = [
     date: 'Winter 2023',
     description: 'Compact and muscular puppies with great temperaments. All placed in loving show homes.',
     images: [
-      'https://images.unsplash.com/photo-1583511655826-05700442b327?w=800'
+      p4
     ]
   },
   {
@@ -59,7 +68,7 @@ const pastLitters = [
     date: 'Fall 2022',
     description: 'Exceptional quality puppies with perfect head structure and amazing personalities.',
     images: [
-      'https://images.unsplash.com/photo-1583337426008-2fef51aa2cc4?w=800'
+      p5
     ]
   },
   {
@@ -71,7 +80,7 @@ const pastLitters = [
     date: 'Summer 2022',
     description: 'Beautiful blue and champagne puppies with excellent confirmation. Multiple show prospects.',
     images: [
-      'https://images.unsplash.com/photo-1583512603806-077998240c7a?w=800'
+      p6
     ]
   },
   {
@@ -83,7 +92,7 @@ const pastLitters = [
     date: 'Spring 2022',
     description: 'Stunning tri-color puppies with perfect structure. Several went on to become champions.',
     images: [
-      'https://images.unsplash.com/photo-1583337130423-937f96eef0a9?w=800'
+      p7
     ]
   },
   {
@@ -95,43 +104,66 @@ const pastLitters = [
     date: 'Winter 2022',
     description: 'Compact and well-built puppies with excellent temperaments. Perfect family companions.',
     images: [
-      'https://images.unsplash.com/photo-1583511666407-5f06533f2113?w=800'
+      p8
     ]
   }
 ];
 
+const fadeInElements = () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).classList.add('animate-fadeIn');
+        (entry.target as HTMLElement).style.opacity = '1';
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '50px' });
+
+  document.querySelectorAll('.fade-in').forEach((element) => {
+    observer.observe(element);
+  });
+};
+
 export default function PastProductions() {
+  useEffect(() => {
+    fadeInElements();
+  }, []);
+
   return (
-    <div>
-      <div className="bg-gray-50 py-16">
+    <div className="animate-fadeIn">
+      {/* Hero Section */}
+      <div className="bg-slate-50 py-24 fade-in opacity-0 transition-all duration-1000">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6">Past Productions</h1>
-            <p className="text-lg text-gray-600">
-              Take a look at our previous litters and the exceptional puppies we've produced.
-              Our breeding program focuses on health, temperament, and conformation excellence.
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-slate-800 mb-8">Past Productions</h1>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              View our previous litters and the exceptional American Bullies we've produced.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="py-16">
+      {/* Past Litters Grid */}
+      <div className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {pastLitters.map((litter) => (
-              <div key={litter.id} className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
-                <img
-                  src={litter.images[0]}
-                  alt={`${litter.date} Litter`}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-4">
-                  <h2 className="text-lg font-bold mb-2">{litter.date} Litter</h2>
-                  <div className="text-sm text-gray-600 mb-2">
-                    <p><strong>Sire:</strong> {litter.parents.sire}</p>
-                    <p><strong>Dam:</strong> {litter.parents.dam}</p>
-                  </div>
-                  <p className="text-sm text-gray-600 line-clamp-2">{litter.description}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {pastLitters.map((litter, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-700 hover:scale-[1.02] fade-in opacity-0"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="relative aspect-w-1 aspect-h-1">
+                  <img
+                    src={litter.images[0]}
+                    alt={`${litter.date} Litter`}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-semibold text-lg text-slate-800 mb-2">{litter.parents.sire} & {litter.parents.dam}</h3>
+                  <p className="text-slate-600 text-sm mb-2">{litter.date}</p>
+                  <p className="text-slate-700">{litter.description}</p>
                 </div>
               </div>
             ))}
@@ -140,24 +172,32 @@ export default function PastProductions() {
       </div>
 
       {/* Contact Section */}
-      <div className="bg-blue-50 py-12 mb-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-lg text-gray-800 mb-4">
-            Elite Bully puppies go very quickly, so reach out to reserve your furever friend or to ask any questions.
-          </p>
-          <div className="bg-white rounded-lg shadow-sm p-6 inline-block">
-            <p className="text-gray-700 font-medium mb-2">MY ONLY PHONE NUMBER</p>
-            <a 
-              href="tel:2065367442" 
-              className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors"
+      <div className="bg-slate-50 py-24 fade-in opacity-0 transition-all duration-1000">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6">Interested in Our Puppies?</h2>
+            <p className="text-xl text-slate-600 mb-8">
+              Contact us to learn more about our upcoming litters and available puppies.
+            </p>
+            <a
+              href="mailto:elitebullies@gmail.com"
+              className="inline-flex items-center px-8 py-4 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700 transition-colors"
             >
-              (206) 536-7442
+              <MessageCircle className="h-5 w-5 mr-2" />
+              <a href="mailto:elitebullies@gmail.com">Email Us</a>
             </a>
           </div>
         </div>
       </div>
 
-      <NewsletterForm />
+      {/* Newsletter Section */}
+      <div className="py-24 fade-in opacity-0 transition-all duration-1000">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-xl mx-auto">
+            <NewsletterForm />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
