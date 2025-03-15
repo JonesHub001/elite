@@ -50,17 +50,45 @@ export default function Apply() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const formatPhoneNumber = (phone: string): string => {
+    // Remove all non-digits
+    const cleaned = phone.replace(/\D/g, '');
+    
+    // Add +1 if it's a 10-digit US number
+    if (cleaned.length === 10) {
+      return `+1${cleaned}`;
+    }
+    
+    // If it already has a country code (more than 10 digits), just return the cleaned number
+    return cleaned.length > 10 ? `+${cleaned}` : cleaned;
+  };
+
+  const validatePhoneNumber = (phone: string): boolean => {
+    const phoneRegex = /^\+?1?\d{9,15}$/;
+    return phoneRegex.test(phone);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
 
+    // Format the phone number
+    const formattedPhone = formatPhoneNumber(formData.phone);
+
+    // Validate the phone number
+    if (!validatePhoneNumber(formattedPhone)) {
+      setError('Please enter a valid phone number (e.g., 1234567890 or +11234567890)');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      const { error } = await submitPuppyApplication({
+      const { error: submitError } = await submitPuppyApplication({
         first_name: formData.firstName,
         last_name: formData.lastName,
         email: formData.email,
-        phone: formData.phone,
+        phone: formattedPhone, // Use the formatted phone number
         address: formData.address,
         city: formData.city,
         state: formData.state,
@@ -76,7 +104,7 @@ export default function Apply() {
         agreed_to_terms: formData.agreeToTerms
       });
 
-      if (error) throw error;
+      if (submitError) throw submitError;
       setSubmitted(true);
     } catch (error) {
       console.error('Application submission error:', error);
@@ -87,10 +115,20 @@ export default function Apply() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
-    }));
+    
+    if (name === 'phone') {
+      // Only allow digits, plus sign, and spaces for phone numbers
+      const sanitizedValue = value.replace(/[^\d\s+]/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: sanitizedValue
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
+      }));
+    }
   };
 
   if (submitted) {
@@ -249,7 +287,13 @@ export default function Apply() {
                     required
                     disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
+                    placeholder="e.g., 1234567890 or +11234567890"
+                    pattern="[0-9+\s]*"
+                    title="Please enter only numbers, spaces, or + symbol"
                   />
+                  <p className="mt-1 text-sm text-gray-500">
+                    Enter numbers only, with or without country code (e.g., 1234567890 or +11234567890)
+                  </p>
                 </div>
               </div>
             </div>
