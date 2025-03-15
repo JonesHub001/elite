@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NewsletterForm from '../components/NewsletterForm';
 import { Star, Shield, Heart, Award, ChevronLeft, ChevronRight, Check, Medal } from 'lucide-react';
@@ -6,7 +6,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import BackToTop from '../components/BackToTop';
-
+import heroImage from '../assets/images/hero-bg.jpg';
+import heroVideo from '../assets/images/hero-video.mp4';
 // Import your images here
 // Example:
 // import heroImage from '../assets/images/hero-background.jpg';
@@ -78,30 +79,49 @@ const testimonials = [
   }
 ];
 
+const fadeInElements = () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).classList.add('animate-fadeIn');
+        (entry.target as HTMLElement).style.opacity = '1';
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '50px' });
+
+  document.querySelectorAll('.fade-in').forEach((element) => {
+    observer.observe(element);
+  });
+};
+
 export default function Home() {
+  useEffect(() => {
+    fadeInElements();
+  }, []);
+
   return (
-    <div>
+    <div className="animate-fadeIn">
       <BackToTop />
       {/* Hero Section */}
       <div 
-        className="relative h-[600px] bg-cover bg-center"
+        className="relative h-[700px] bg-cover bg-center fade-in opacity-0 transition-all duration-1000"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=1600&auto=format&fit=crop&q=80&ixlib=rb-4.0.3)'
+          backgroundImage: `url(${heroImage})`
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50" />
+        <div className="absolute inset-0 bg-black bg-opacity-40" />
         <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-          <div className="text-white">
-            <h1 className="text-5xl font-bold mb-4">
+          <div className="text-white max-w-3xl">
+            <h1 className="text-6xl font-bold mb-6">
               Elite American Bully Puppies
             </h1>
-            <p className="text-xl mb-8 max-w-2xl">
+            <p className="text-2xl mb-10 leading-relaxed">
               Breeding exceptional American Bullies with perfect temperament, 
               outstanding health, and superior genetics.
             </p>
             <Link
               to="/puppies"
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
+              className="bg-slate-800 text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-slate-700 transition-colors"
             >
               View Available Puppies
             </Link>
@@ -110,81 +130,148 @@ export default function Home() {
       </div>
 
       {/* Welcome Section */}
-      <div className="py-20 bg-white">
+      <div className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Welcome to Elite Bully Productions</h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto mb-8"></div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+          <div className="text-center mb-20 fade-in opacity-0 transition-all duration-1000">
+            <h2 className="text-4xl font-bold text-slate-800 mb-6">Welcome to Elite Bully Productions</h2>
+            <div className="w-24 h-1 bg-slate-600 mx-auto mb-10"></div>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Micro American Bully breeder in LA with ABKC Micro American Bully puppies available for sale as well as stud service.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            <div className="space-y-6">
-              <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Our Breeding Philosophy</h3>
-                <p className="text-gray-600">
+          {/* Video Showcase Section */}
+          <div className="grid md:grid-cols-2 gap-16 items-center mb-32">
+            <div className="relative rounded-2xl overflow-hidden shadow-xl fade-in opacity-0 transition-all duration-1000">
+              <div className="aspect-w-16 aspect-h-9 bg-slate-100">
+                <video
+                  className="w-full h-full object-cover"
+                  src={heroVideo}
+                  title="Elite Bullies Puppy Showcase"
+                  muted
+                  autoPlay
+                  loop
+                  playsInline
+                  controls={false}
+                ></video>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
+              </div>
+            </div>
+
+            <div className="space-y-8">
+              <div className="bg-gradient-to-br from-slate-50 to-white p-10 rounded-xl shadow-lg border border-slate-100">
+                <h3 className="text-2xl font-bold text-slate-800 mb-6">Experience Elite Bullies</h3>
+                <p className="text-slate-600 mb-8 text-lg">
+                  Watch our puppies in action and see the joy they bring. Our video showcase highlights:
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <Check className="h-6 w-6 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Playful interactions with their littermates</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-6 w-6 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Early socialization and training sessions</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-6 w-6 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Their loving temperaments and personalities</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-6 w-6 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Daily care and enrichment activities</span>
+                  </li>
+                </ul>
+                <div className="mt-10">
+                  <Link
+                    to="/puppies"
+                    className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg shadow-sm text-white bg-slate-700 hover:bg-slate-600 transition-colors"
+                  >
+                    View Available Puppies
+                    <ChevronRight className="ml-2 h-6 w-6" />
+                  </Link>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center">
+                  <Star className="h-10 w-10 text-amber-400 mx-auto mb-3" />
+                  <h4 className="font-semibold text-slate-800 text-lg">Quality Assured</h4>
+                </div>
+                <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center">
+                  <Heart className="h-10 w-10 text-rose-400 mx-auto mb-3" />
+                  <h4 className="font-semibold text-slate-800 text-lg">Raised with Love</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Philosophy Section */}
+          <div className="grid md:grid-cols-2 gap-16 items-start mb-32">
+            <div className="space-y-8 fade-in opacity-0 transition-all duration-1000">
+              <div className="bg-slate-50 p-10 rounded-xl border border-slate-100">
+                <h3 className="text-2xl font-semibold text-slate-800 mb-6">Our Breeding Philosophy</h3>
+                <p className="text-slate-600 text-lg leading-relaxed">
                   Health, structure, and temperament come first and foremost when choosing mating pairs. We specialize in producing only the finest ABKC registered Micro Bullies with:
                 </p>
-                <ul className="mt-4 space-y-2">
+                <ul className="mt-6 space-y-4">
                   <li className="flex items-start">
-                    <Check className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Rare coat colors</span>
+                    <Check className="h-6 w-6 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Rare coat colors</span>
                   </li>
                   <li className="flex items-start">
-                    <Check className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Small and compact structure</span>
+                    <Check className="h-6 w-6 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Small and compact structure</span>
                   </li>
                   <li className="flex items-start">
-                    <Check className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Affectionate personalities</span>
+                    <Check className="h-6 w-6 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Affectionate personalities</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
-                <h3 className="text-xl font-semibold text-blue-900 mb-3">Quality Assurance</h3>
-                <p className="text-blue-800">
+              <div className="bg-slate-100 p-10 rounded-xl border border-slate-200">
+                <h3 className="text-2xl font-semibold text-slate-800 mb-6">Quality Assurance</h3>
+                <p className="text-slate-700 text-lg mb-6">
                   We achieve our goal of producing quality Micro American Bullies through:
                 </p>
-                <ul className="mt-4 space-y-2 text-blue-800">
+                <ul className="space-y-4">
                   <li className="flex items-start">
-                    <Shield className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Rigorous health and genetic testing</span>
+                    <Shield className="h-6 w-6 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Rigorous health and genetic testing</span>
                   </li>
                   <li className="flex items-start">
-                    <Shield className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Selective breeding practices</span>
+                    <Shield className="h-6 w-6 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">Selective breeding practices</span>
                   </li>
                   <li className="flex items-start">
-                    <Shield className="h-5 w-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>World-class breeding program standards</span>
+                    <Shield className="h-6 w-6 text-slate-600 mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-slate-700 text-lg">World-class breeding program standards</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-lg border border-gray-100">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Our Vision</h3>
-                <p className="text-gray-600 mb-4">
+            <div className="space-y-8">
+              <div className="bg-gradient-to-br from-slate-50 to-white p-10 rounded-xl border border-slate-100">
+                <h3 className="text-2xl font-semibold text-slate-800 mb-6">Our Vision</h3>
+                <p className="text-slate-600 text-lg leading-relaxed mb-6">
                   Our vision is to provide homes with lifelong companions. To actualize this vision we established our world class breeding program with the highest standards to ensure the absolute best circumstances for all of our puppies and adopting families.
                 </p>
-                <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-4"></div>
-                <p className="text-gray-600">
+                <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent my-6"></div>
+                <p className="text-slate-600 text-lg leading-relaxed">
                   Our ethical practices and high standards combined with our deep love and respect for this breed really sets our puppies apart.
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 text-center">
-                  <Award className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                  <h4 className="font-semibold text-gray-900">ABKC Registered</h4>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center">
+                  <Award className="h-10 w-10 text-slate-600 mx-auto mb-3" />
+                  <h4 className="font-semibold text-slate-800 text-lg">ABKC Registered</h4>
                 </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 text-center">
-                  <Medal className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                  <h4 className="font-semibold text-gray-900">Premium Quality</h4>
+                <div className="bg-white p-8 rounded-xl shadow-sm border border-slate-100 text-center">
+                  <Medal className="h-10 w-10 text-slate-600 mx-auto mb-3" />
+                  <h4 className="font-semibold text-slate-800 text-lg">Premium Quality</h4>
                 </div>
               </div>
             </div>
@@ -193,17 +280,21 @@ export default function Home() {
       </div>
 
       {/* Services Section */}
-      <div className="py-16 bg-gray-50">
+      <div className="py-32 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">Why Choose Elite Bullies</h2>
+          <div className="text-center mb-20 fade-in opacity-0 transition-all duration-1000">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6">Why Choose Elite Bullies</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {services.map((service, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                <service.icon className="h-12 w-12 text-blue-600 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
+              <div 
+                key={index} 
+                className="bg-white p-10 rounded-xl shadow-md transform transition-all duration-500 hover:scale-[1.02] fade-in opacity-0"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <service.icon className="h-14 w-14 text-slate-600 mb-6 transform transition-transform duration-500 hover:scale-110" />
+                <h3 className="text-xl font-semibold mb-4 text-slate-800">{service.title}</h3>
+                <p className="text-slate-600 text-lg">{service.description}</p>
               </div>
             ))}
           </div>
@@ -211,95 +302,114 @@ export default function Home() {
       </div>
 
       {/* Featured Puppies */}
-      <div className="py-16">
+      <div className="py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-6">American Bully Puppies for Sale and Planned Breedings</h2>
+          <h2 className="text-3xl font-bold text-center mb-20 fade-in opacity-0 transition-all duration-1000">
+            American Bully Puppies for Sale and Planned Breedings
+          </h2>
           
-          <div className="max-w-4xl mx-auto mb-12 space-y-6 text-gray-700">
-            <p className="leading-relaxed">
-              From my loving arms to yours, an Elite Bully baby comes home with a veterinarians exam, first set of vaccinations, microchip, multiple deworming, written sales contract with health guarantee, and lifetime breeders support. Elite Bully puppies are raised in home and know nothing but love and compassion from their birth until they come home to you.
-            </p>
-            
-            <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
-              <h3 className="text-xl font-semibold text-blue-900 mb-3">Our Breeding Methods</h3>
-              <p className="mb-4">
-                I practice Early Neurological Stimulation. This a method of stimulating the nervous systems and firmly believe this method encourages a stable temperament. When done properly puppies have shown to have stronger heart beats, improved cardiovascular performance, stronger adrenal glands and more tolerance to stress.
+          <div className="max-w-4xl mx-auto mb-20 space-y-8 text-slate-700">
+            <div className="fade-in opacity-0 transition-all duration-1000">
+              <p className="leading-relaxed text-lg">
+                From my loving arms to yours, an Elite Bully baby comes home with a veterinarians exam, first set of vaccinations, microchip, multiple deworming, written sales contract with health guarantee, and lifetime breeders support. Elite Bully puppies are raised in home and know nothing but love and compassion from their birth until they come home to you.
               </p>
-              <p>
-                I take pride in offering my puppies high quality care, a clean environment with lots of simulation, enrichment and with lots of love. I also included the "Rule of 7" method and have adopted "Puppy Culture" into our breeding program. Puppies are fed high quality puppy food and a human-grade cooked diet that meets their nutritional needs.
-              </p>
-            </div>
-
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Lifetime Support</h3>
-              <p>
-                Unlike other breeders, we are in it for the long run and provide support and counsel even after my puppies leave my care and join their families. And I truly look forward to updates from my puppy families throughout their life.
-              </p>
-            </div>
-
-            <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-100">
-              <h3 className="text-xl font-semibold text-yellow-900 mb-3">Puppy Placement Policy</h3>
-              <p className="mb-4">
-                I know my puppy owners like to take preference in colors and genders, but we ask for you to keep an open mind in allowing me to help match you and your family with the best fit puppy. Matching puppies based on their temperament, personality, drive and needs is so very important to ensuring puppies are adopted by people they're compatible with.
-              </p>
-              <p>
-                Most ethical breeders adopt this practice as this ensures our dogs and puppies are less likely to be returned and adopting from an ethical breeder reduces the risk of them being abandoned.
-              </p>
-            </div>
-
-            <div className="bg-red-50 p-6 rounded-lg border border-red-100">
-              <h3 className="text-xl font-semibold text-red-900 mb-3">Important Notice</h3>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>I ALWAYS prefer pet homes, with spay/neuter contracts.</li>
-                <li>I retain the right to refuse sale to anyone for any reason.</li>
-                <li>Puppies are placed in homes on a "best fit" basis, NOT first come first serve.</li>
-                <li>No puppy will be held or reserved until a deposit, puppy application, and signed sales contract is received by Elite Bullies.</li>
-              </ul>
-            </div>
-          </div>
-
-          <h3 className="text-2xl font-bold text-center mb-8">Featured Puppies</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              // Replace with your puppy data
-              {
-                id: 1,
-                name: 'Blue Steel',
-                // image: puppy1,
-                image: 'https://images.unsplash.com/photo-1583511655826-05700442b327?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3', // Replace with your image
-                details: 'Male • 12 weeks • Blue'
-              },
-              // Add more puppies...
-            ].map((puppy) => (
-              <div key={puppy.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img
-                  src={puppy.image}
-                  alt={puppy.name}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{puppy.name}</h3>
-                  <p className="text-gray-600">
-                    {puppy.details}
-                  </p>
-                  <Link
-                    to="/puppies"
-                    className="mt-4 inline-block text-blue-600 font-semibold hover:text-blue-700"
-                  >
-                    Learn More →
-                  </Link>
-                </div>
+              
+              <div className="bg-slate-50 p-10 rounded-xl border border-slate-100">
+                <h3 className="text-2xl font-semibold text-slate-800 mb-6">Our Breeding Methods</h3>
+                <p className="mb-6 text-lg">
+                  I practice Early Neurological Stimulation. This a method of stimulating the nervous systems and firmly believe this method encourages a stable temperament. When done properly puppies have shown to have stronger heart beats, improved cardiovascular performance, stronger adrenal glands and more tolerance to stress.
+                </p>
+                <p className="text-lg">
+                  I take pride in offering my puppies high quality care, a clean environment with lots of simulation, enrichment and with lots of love. I also included the "Rule of 7" method and have adopted "Puppy Culture" into our breeding program. Puppies are fed high quality puppy food and a human-grade cooked diet that meets their nutritional needs.
+                </p>
               </div>
-            ))}
+
+              <div className="bg-slate-100 p-10 rounded-xl border border-slate-200">
+                <h3 className="text-2xl font-semibold text-slate-800 mb-6">Lifetime Support</h3>
+                <p className="text-lg">
+                  Unlike other breeders, we are in it for the long run and provide support and counsel even after my puppies leave my care and join their families. And I truly look forward to updates from my puppy families throughout their life.
+                </p>
+              </div>
+
+              <div className="bg-amber-50 p-10 rounded-xl border border-amber-100">
+                <h3 className="text-2xl font-semibold text-amber-900 mb-6">Puppy Placement Policy</h3>
+                <p className="mb-6 text-lg text-amber-800">
+                  I know my puppy owners like to take preference in colors and genders, but we ask for you to keep an open mind in allowing me to help match you and your family with the best fit puppy. Matching puppies based on their temperament, personality, drive and needs is so very important to ensuring puppies are adopted by people they're compatible with.
+                </p>
+                <p className="text-lg text-amber-800">
+                  Most ethical breeders adopt this practice as this ensures our dogs and puppies are less likely to be returned and adopting from an ethical breeder reduces the risk of them being abandoned.
+                </p>
+              </div>
+
+              <div className="bg-rose-50 p-10 rounded-xl border border-rose-100">
+                <h3 className="text-2xl font-semibold text-rose-900 mb-6">Important Notice</h3>
+                <ul className="list-disc pl-8 space-y-3 text-lg text-rose-800">
+                  <li>I ALWAYS prefer pet homes, with spay/neuter contracts.</li>
+                  <li>I retain the right to refuse sale to anyone for any reason.</li>
+                  <li>Puppies are placed in homes on a "best fit" basis, NOT first come first serve.</li>
+                  <li>No puppy will be held or reserved until a deposit, puppy application, and signed sales contract is received by Elite Bullies.</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 className="text-2xl font-bold text-center mb-8">Featured Puppies</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              {[
+                {
+                  id: 1,
+                  name: 'Blue Steel',
+                  image: 'https://images.unsplash.com/photo-1583511655826-05700442b327?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+                  details: 'Male • 12 weeks • Blue'
+                },
+                {
+                  id: 2,
+                  name: 'Crystal',
+                  image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+                  details: 'Female • 10 weeks • Merle • Blue Eyes'
+                },
+                {
+                  id: 3,
+                  name: 'Titan',
+                  image: 'https://images.unsplash.com/photo-1583511666407-5f06533f2113?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+                  details: 'Male • 11 weeks • Blue • Pocket'
+                }
+              ].map((puppy, index) => (
+                <div 
+                  key={puppy.id} 
+                  className="bg-white rounded-xl shadow-md overflow-hidden transform transition-all duration-700 hover:scale-[1.02] fade-in opacity-0"
+                  style={{ animationDelay: `${index * 300}ms` }}
+                >
+                  <img
+                    src={puppy.image}
+                    alt={puppy.name}
+                    className="w-full h-72 object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                  <div className="p-8">
+                    <h3 className="text-xl font-semibold mb-3 text-slate-800">{puppy.name}</h3>
+                    <p className="text-slate-600 text-lg">
+                      {puppy.details}
+                    </p>
+                    <Link
+                      to="/puppies"
+                      className="mt-6 inline-block text-slate-600 font-semibold hover:text-slate-800 transition-all duration-300 hover:translate-x-2"
+                    >
+                      Learn More →
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Testimonials */}
-      <div className="py-16 bg-gray-50">
+      <div className="py-32 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
-          <div className="relative">
+          <h2 className="text-3xl font-bold text-center mb-20 fade-in opacity-0 transition-all duration-1000">
+            What Our Clients Say
+          </h2>
+          <div className="relative fade-in opacity-0 transition-all duration-1000">
             <Slider
               dots={true}
               infinite={true}
@@ -321,25 +431,25 @@ export default function Home() {
               className="testimonials-slider"
             >
               {testimonials.map((testimonial, index) => (
-                <div key={index} className="px-4">
-                  <div className="bg-white p-6 rounded-lg shadow-md h-full">
-                    <div className="flex items-center mb-4">
+                <div key={index} className="px-6">
+                  <div className="bg-white p-8 rounded-xl shadow-md h-full transform transition-transform duration-300 hover:scale-[1.02]">
+                    <div className="flex items-center mb-6">
                       <img
                         src={testimonial.image}
                         alt={testimonial.name}
-                        className="w-12 h-12 rounded-full object-cover"
+                        className="w-14 h-14 rounded-full object-cover"
                       />
                       <div className="ml-4">
-                        <h3 className="font-semibold">{testimonial.name}</h3>
-                        <p className="text-gray-600">{testimonial.location}</p>
+                        <h3 className="font-semibold text-lg text-slate-800">{testimonial.name}</h3>
+                        <p className="text-slate-600">{testimonial.location}</p>
                       </div>
                       <div className="flex ml-auto">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-5 w-5 text-yellow-400" />
+                          <Star key={i} className="h-5 w-5 text-amber-400" />
                         ))}
                       </div>
                     </div>
-                    <p className="text-gray-700">{testimonial.content}</p>
+                    <p className="text-slate-700 text-lg leading-relaxed">{testimonial.content}</p>
                   </div>
                 </div>
               ))}
@@ -349,10 +459,12 @@ export default function Home() {
       </div>
 
       {/* Client Gallery */}
-      <div className="py-16">
+      <div className="py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Happy Families with Their Bullies</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <h2 className="text-3xl font-bold text-center mb-20 fade-in opacity-0 transition-all duration-1000">
+            Happy Families with Their Bullies
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {[
               {
                 url: 'https://images.unsplash.com/photo-1583512603806-077998240c7a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
@@ -391,14 +503,18 @@ export default function Home() {
                 caption: 'Ruby celebrating her birthday'
               }
             ].map((image, index) => (
-              <div key={index} className="relative group">
+              <div 
+                key={index} 
+                className="relative group overflow-hidden rounded-xl shadow-md transform transition-all duration-700 hover:scale-[1.02] fade-in opacity-0"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
                 <img
                   src={image.url}
                   alt={image.caption}
-                  className="w-full h-64 object-cover rounded-lg shadow-md transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-80 object-cover"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 rounded-b-lg">
-                  <p className="text-sm text-center">{image.caption}</p>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+                  <p className="text-white text-lg font-medium text-center">{image.caption}</p>
                 </div>
               </div>
             ))}
@@ -407,17 +523,122 @@ export default function Home() {
       </div>
 
       {/* Newsletter Section */}
-      <div className="py-16 bg-gray-50">
+      <div className="py-32 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Connected</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-16 fade-in opacity-0 transition-all duration-1000">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6">Stay Connected</h2>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Sign up with your email address today to be among the first to know about exciting new litters, available puppies, comprehensive stud services, a variety of available dogs, and all the wonderful things that we are doing here at Elite Bullies. Your subscription will ensure that you stay informed and connected with our community.
             </p>
           </div>
-          <NewsletterForm />
+          <div className="max-w-xl mx-auto">
+            <NewsletterForm />
+          </div>
         </div>
       </div>
+
+      {/* Footer Navigation */}
+      <footer className="bg-slate-900 text-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          {/* Main Footer Content */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            {/* Brand Section */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-white">Elite Bullies</h3>
+              <p className="text-slate-400 leading-relaxed">
+                Premium American Bully breeder committed to excellence in breeding and raising exceptional companions.
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                  </svg>
+                </a>
+                <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-6">Quick Links</h4>
+              <ul className="space-y-4">
+                <li>
+                  <Link to="/" className="text-slate-400 hover:text-white transition-colors">Home</Link>
+                </li>
+                <li>
+                  <Link to="/puppies" className="text-slate-400 hover:text-white transition-colors">Available Puppies</Link>
+                </li>
+                <li>
+                  <Link to="/mission" className="text-slate-400 hover:text-white transition-colors">About Us</Link>
+                </li>
+               
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-6">Our Services</h4>
+              <ul className="space-y-4">
+                <li>
+                  <Link to="/puppies" className="text-slate-400 hover:text-white transition-colors">Puppy Sales</Link>
+                </li>
+                <li>
+                  <Link to="/studs" className="text-slate-400 hover:text-white transition-colors">Stud Services</Link>
+                </li>
+               
+              </ul>
+            </div>
+
+            {/* Contact Info */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-6">Contact Us</h4>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-slate-400 mr-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span className="text-slate-400">(555) 123-4567</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-slate-400 mr-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span className="text-slate-400">info@elitebullies.com</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-slate-400 mr-3 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span className="text-slate-400">Los Angeles, CA</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Footer */}
+          <div className="border-t border-slate-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <p className="text-slate-400 text-sm">
+                © {new Date().getFullYear()} Elite Bullies. All rights reserved.
+              </p>
+              <div className="flex space-x-6 mt-4 md:mt-0">
+                <Link to="/privacy" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+                <Link to="/terms" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  Terms of Service
+                </Link>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
