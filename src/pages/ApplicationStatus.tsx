@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getPuppyApplication } from '../lib/supabase';
+import { sendStatusEmail } from '../lib/emailService';
 import { 
   CheckCircle, 
   XCircle, 
@@ -9,16 +10,33 @@ import {
   Phone, 
   Mail,
   Banknote,
-  
 } from 'lucide-react';
 import { PuppyApplication } from '../types/supabase';
 import venmo from '../assets/images/venmo.png';
+
 export default function ApplicationStatus() {
   const [email, setEmail] = useState('');
   const [applicationData, setApplicationData] = useState<PuppyApplication | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searched, setSearched] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+
+  const getNextSteps = (status: string) => {
+    switch (status) {
+      case 'approved':
+        return 'Congratulations! Your application has been approved. Next steps:\n' +
+          '1. Submit your deposit of $1000 within 24 hours to secure your puppy\n' +
+          '2. Contact us at 232-445-4445 or elitebullies@gmail.com\n' +
+          '3. We\'ll discuss puppy selection and delivery options once deposit is received';
+      case 'pending':
+        return 'Your application is currently under review. We\'ll contact you once a decision has been made.';
+      case 'rejected':
+        return 'Unfortunately, your application was not approved at this time. Feel free to contact us if you have any questions.';
+      default:
+        return '';
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,6 +44,7 @@ export default function ApplicationStatus() {
     setError(null);
     setApplicationData(null);
     setSearched(true);
+    setEmailSent(false);
 
     try {
       const { data, error } = await getPuppyApplication(email);
@@ -34,6 +53,18 @@ export default function ApplicationStatus() {
         setError('No application found with this email address. Please check your email and try again.');
       } else {
         setApplicationData(data);
+        
+        // Send status email
+        const emailResponse = await sendStatusEmail({
+          to_email: data.email,
+          to_name: `${data.first_name} ${data.last_name}`,
+          application_status: data.status,
+          next_steps: getNextSteps(data.status)
+        });
+
+        if (emailResponse.success) {
+          setEmailSent(true);
+        }
       }
     } catch (err) {
       setError('An error occurred while checking your application status. Please try again later.');
@@ -246,6 +277,15 @@ export default function ApplicationStatus() {
                       If you don't receive an email response within 24 hours, please text or call us directly.
                     </p>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {emailSent && (
+              <div className="mt-4 bg-blue-50 border border-blue-100 rounded-lg p-4">
+                <div className="flex items-center gap-2 text-blue-700">
+                  <Mail className="h-5 w-5" />
+                  <p>A detailed status update has been sent to your email.</p>
                 </div>
               </div>
             )}

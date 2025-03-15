@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Elite Bullies Application Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .header {
+            background-color: #1a56db;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0 0 8px 8px;
+        }
+        .status {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a56db;
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #e1effe;
+            border-radius: 4px;
+        }
+        .next-steps {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #e5e7eb;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #1a56db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>Elite Bullies Application Update</h1>
+        </div>
+        
+        <div class="content">
+            <p>Hello {{to_name}},</p>
+            
+            <p>Your application status has been updated:</p>
+            
+            <div class="status">
+                Status: {{application_status}}
+            </div>
+            
+            <div class="next-steps">
+                <h2>Next Steps:</h2>
+                <div style="white-space: pre-line">{{next_steps}}</div>
+            </div>
+            
+            <p>If you have any questions about your application or need additional information, please don't hesitate to contact us:</p>
+            <ul>
+                <li>Phone: (232) 445-4445</li>
+                <li>Email: elitebullies@gmail.com</li>
+            </ul>
+            
+            <a href="http://localhost:5173/application-status" class="button">Check Application Status</a>
+            
+            <div class="footer">
+                <p>Best regards,<br>{{from_name}}</p>
+                <p>This is an automated message, but you can reply directly to this email if you have any questions.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
