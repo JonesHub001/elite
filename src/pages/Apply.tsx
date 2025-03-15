@@ -224,7 +224,7 @@ export default function Apply() {
               <div className="bg-blue-50 p-6 rounded-lg mb-8">
                 <h3 className="text-lg font-semibold text-blue-900 mb-4">Important Financial Information</h3>
                 <ul className="list-disc pl-5 space-y-2 text-blue-900">
-                  <li>Puppy prices range from $2500-$7000 USD depending on the puppy selected.</li>
+                  <li>Puppy prices range from $2500-$9000 USD depending on the puppy selected.</li>
                   <li>A non-refundable deposit of $800 is required to secure your puppy pick.</li>
                   <li>You must respond to being approved within 24 hours or we will move on to our next approved buyer.</li>
                   <li>The remaining balance is due at 8 weeks.</li>
