@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
 import { getPuppyApplication } from '../lib/supabase';
-import { CheckCircle, XCircle, Clock, Search, Loader2 } from 'lucide-react';
+import { 
+  CheckCircle, 
+  XCircle, 
+  Clock, 
+  Search, 
+  Loader2, 
+  Phone, 
+  Mail,
+  Banknote,
+  
+} from 'lucide-react';
 import { PuppyApplication } from '../types/supabase';
-
+import venmo from '../assets/images/venmo.png';
 export default function ApplicationStatus() {
   const [email, setEmail] = useState('');
   const [applicationData, setApplicationData] = useState<PuppyApplication | null>(null);
@@ -46,7 +56,7 @@ export default function ApplicationStatus() {
         return {
           icon: <CheckCircle className="h-8 w-8 text-green-500" />,
           text: 'Approved',
-          description: 'Congratulations! Your application has been approved.',
+          description: 'Congratulations! Your application has been approved. Please follow the next steps below.',
           color: 'text-green-700'
         };
       case 'rejected':
@@ -156,11 +166,87 @@ export default function ApplicationStatus() {
             {applicationData.status === 'approved' && (
               <div className="mt-6 p-4 bg-green-50 rounded-lg">
                 <h3 className="text-lg font-semibold text-green-800 mb-2">Next Steps</h3>
-                <ul className="list-disc list-inside text-green-700 space-y-2">
-                  <li>Submit your deposit of $1000 within 24 hours to secure your puppy</li>
-                  <li>Check your email for detailed payment instructions</li>
-                  <li>Schedule a call with our team to discuss puppy selection</li>
-                </ul>
+                <div className="space-y-4">
+                  <ul className="list-disc list-inside text-green-700 space-y-2">
+                    <li>Submit your deposit of $1000 within 24 hours to secure your puppy</li>
+                    <li>Once deposit is received, we'll discuss puppy selection and delivery options</li>
+                  </ul>
+
+                  <div className="bg-white/50 rounded-lg p-4">
+                    <h4 className="font-medium text-green-800 mb-3">Accepted Payment Methods:</h4>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <img 
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" 
+                          alt="PayPal" 
+                          className="h-6 w-auto object-contain"
+                        />
+                        <span>PayPal</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <img 
+                          src={venmo} 
+                          alt="Venmo" 
+                          className="h-5 w-auto object-contain"
+                        />
+                        <span>Venmo</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <img 
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png" 
+                          alt="Bank Transfer" 
+                          className="h-5 w-auto object-contain"
+                        />
+                        <span>Bank Transfer</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <img 
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Square_Cash_app_logo.svg/1200px-Square_Cash_app_logo.svg.png" 
+                          alt="Cash App" 
+                          className="h-6 w-auto object-contain"
+                        />
+                        <span>Cash App</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <img 
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Apple_Pay_logo.svg/1200px-Apple_Pay_logo.svg.png" 
+                          alt="Apple Pay" 
+                          className="h-5 w-auto object-contain"
+                        />
+                        <span>Apple Pay</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-700">
+                        <div className="bg-green-100 p-1.5 rounded">
+                          <Banknote className="h-5 w-5 text-green-600" />
+                        </div>
+                        <span>Cash</span>
+                      </div>
+                    </div>
+                    <p className="mt-4 text-sm text-gray-600 text-center">
+                      All payment methods are secure and verified
+                    </p>
+                  </div>
+
+                  <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+                    <h4 className="font-medium text-blue-800 mb-2">Contact Instructions:</h4>
+                    <p className="text-blue-700 mb-2">
+                      Please contact us using either method below to proceed with your deposit and puppy selection:
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-blue-700">
+                        <Phone className="h-5 w-5" />
+                        <p>Call or text: <a href="tel:2324454445" className="underline">232-445-4445</a></p>
+                      </div>
+                      <div className="flex items-center gap-2 text-blue-700">
+                        <Mail className="h-5 w-5" />
+                        <p>Email: <a href="mailto:elitebullies@gmail.com" className="underline">elitebullies@gmail.com</a></p>
+                      </div>
+                    </div>
+                    <p className="mt-3 text-sm text-blue-600">
+                      If you don't receive an email response within 24 hours, please text or call us directly.
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
           </div>
