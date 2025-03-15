@@ -21,3 +21,55 @@
     @apply bg-gray-200 text-gray-900 px-6 py-2 rounded-lg font-semibold hover:bg-gray-300 transition-colors;
   }
 }
+
+/* Testimonials Carousel Styles */
+.testimonials-slider {
+  margin: 0 -1rem;
+}
+
+.testimonials-slider .slick-slide {
+  padding: 1rem;
+}
+
+.testimonials-slider .slick-dots {
+  bottom: -2.5rem;
+}
+
+.testimonials-slider .slick-dots li button:before {
+  font-size: 0.75rem;
+  color: #3B82F6;
+  opacity: 0.25;
+}
+
+.testimonials-slider .slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: #3B82F6;
+}
+
+.testimonials-slider .slick-prev,
+.testimonials-slider .slick-next {
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 10;
+}
+
+.testimonials-slider .slick-prev {
+  left: -2.5rem;
+}
+
+.testimonials-slider .slick-next {
+  right: -2.5rem;
+}
+
+.testimonials-slider .slick-prev:before,
+.testimonials-slider .slick-next:before {
+  color: #3B82F6;
+  font-size: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .testimonials-slider .slick-prev,
+  .testimonials-slider .slick-next {
+    display: none !important;
+  }
+}
