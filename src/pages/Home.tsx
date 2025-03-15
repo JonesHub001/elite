@@ -5,6 +5,7 @@ import { Star, Shield, Heart, Award, ChevronLeft, ChevronRight, Check, Medal } f
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import BackToTop from '../components/BackToTop';
 
 // Import your images here
 // Example:
@@ -80,6 +81,7 @@ const testimonials = [
 export default function Home() {
   return (
     <div>
+      <BackToTop />
       {/* Hero Section */}
       <div 
         className="relative h-[600px] bg-cover bg-center"

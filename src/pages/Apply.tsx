@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
+import BackToTop from '../components/BackToTop';
 
 interface FormData {
   firstName: string;
@@ -80,6 +82,7 @@ export default function Apply() {
 
   return (
     <div>
+      <BackToTop />
       <div className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
@@ -102,7 +105,7 @@ export default function Apply() {
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-lg font-semibold text-blue-900 mb-3">Deposit and Payment</h3>
                   <ul className="list-disc pl-5 space-y-2 text-blue-800">
-                    <li>Non-refundable deposit of $1,000 required upon approval</li>
+                    <li>Non-refundable deposit of $500 required upon approval</li>
                     <li>Remaining balance due prior to pickup or delivery</li>
                     <li>Puppy prices range from $1,500 - $5,000 USD depending on selection</li>
                     <li>We accept bank transfer/deposit, Apple Pay, Cash App, Venmo, and PayPal</li>
@@ -453,9 +456,14 @@ export default function Apply() {
                 <div className="flex justify-center">
                   <button
                     type="submit"
-                    className="btn-primary"
+                    className={`btn-primary transition-all duration-200 ${
+                      !formData.agreeToTerms 
+                        ? 'opacity-50 cursor-not-allowed bg-gray-400 hover:bg-gray-400' 
+                        : ''
+                    }`}
+                    disabled={!formData.agreeToTerms}
                   >
-                    Submit Application
+                    {formData.agreeToTerms ? 'Submit Application' : 'Accept Terms to Submit'}
                   </button>
                 </div>
               </form>
