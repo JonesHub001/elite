@@ -1,0 +1,54 @@
+Elite Bullies - Application Status Management Guide
+==============================================
+
+To change an application's status to approved, you'll need to:
+
+1. Access the Supabase Dashboard:
+   - Go to https://app.supabase.com
+   - Log in with your admin credentials
+   - Select the Elite Bullies project
+
+2. Navigate to Table Editor:
+   - Click on "Table Editor" in the left sidebar
+   - Select the "puppy_applications" table
+
+3. Update Application Status:
+   - Find the application you want to update using the email filter
+   - Click on the row to edit
+   - Change the "status" field to one of these values:
+     * 'pending' (default for new applications)
+     * 'approved' (for accepted applications)
+     * 'rejected' (for declined applications)
+   - Click "Save" to update the status
+
+4. Status Change Effects:
+   - When marked as 'approved':
+     * Applicant will see "Approved" status when they check
+     * They'll receive next steps for deposit payment
+     * They'll get instructions for puppy selection
+   - When marked as 'pending':
+     * Applicant will see "Under Review" status
+   - When marked as 'rejected':
+     * Applicant will see "Not Approved" status
+
+Security Note:
+-------------
+- Only authorized admin users should have access to the Supabase dashboard
+- Never share admin credentials
+- Always verify applicant information before changing status
+- Keep track of status changes for record-keeping
+
+Alternative Method (Using API):
+-----------------------------
+You can also update the status programmatically using the updatePuppyApplication function:
+
+```typescript
+const { data, error } = await updatePuppyApplication(applicationId, {
+    status: 'approved'
+});
+```
+
+Remember:
+- Double-check the application details before approval
+- Maintain consistent communication with applicants
+- Document any special conditions or notes in the admin panel 

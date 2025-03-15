@@ -63,16 +63,17 @@ export async function submitPuppyApplication(data: Omit<PuppyApplication, 'id' |
     }
 }
 
-export async function getPuppyApplication(id: string) {
+export async function getPuppyApplication(email: string) {
     try {
         const { data, error } = await supabase
             .from('puppy_applications')
             .select('*')
-            .eq('id', id)
-            .single();
+            .eq('email', email)
+            .order('created_at', { ascending: false })
+            .limit(1);
 
         if (error) throw error;
-        return { data, error: null };
+        return { data: data?.[0] || null, error: null };
     } catch (error) {
         console.error('Get application error:', error);
         return { data: null, error };

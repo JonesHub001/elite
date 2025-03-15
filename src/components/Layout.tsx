@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import { PawPrint as Paw, Instagram, Facebook, Mail, Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { PawPrint as Paw, Instagram, Facebook, Mail, Menu, X, ClipboardCheck } from 'lucide-react';
 import { useState } from 'react';
 import { clsx } from 'clsx';
+
+interface LayoutProps {
+  children: React.ReactNode;
+}
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,6 +41,13 @@ const Navigation = () => {
                 {link.label}
               </Link>
             ))}
+            <Link
+              to="/application-status"
+              className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
+            >
+              <ClipboardCheck className="h-4 w-4" />
+              Check Status
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -64,18 +75,26 @@ const Navigation = () => {
               {link.label}
             </Link>
           ))}
+          <Link
+            to="/application-status"
+            className="flex items-center gap-2 bg-blue-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700"
+            onClick={() => setIsOpen(false)}
+          >
+            <ClipboardCheck className="h-5 w-5" />
+            Check Application Status
+          </Link>
         </div>
       </div>
     </nav>
   );
 };
 
-export default function Layout() {
+export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
       <main className="flex-grow">
-        <Outlet />
+        {children}
       </main>
     </div>
   );

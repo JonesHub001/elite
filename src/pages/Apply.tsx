@@ -141,9 +141,20 @@ export default function Apply() {
             Thank you for your interest in our puppies. We'll review your application
             and contact you within 2-3 business days.
           </p>
-          <Link to="/" className="btn-primary">
-            Return to Home
-          </Link>
+          <div className="space-y-4">
+            <Link 
+              to="/application-status" 
+              className="block w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Check Application Status
+            </Link>
+            <Link 
+              to="/" 
+              className="block w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+            >
+              Return to Home
+            </Link>
+          </div>
         </div>
       </div>
     );
