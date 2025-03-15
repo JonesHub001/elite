@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Check } from 'lucide-react';
 import BackToTop from '../components/BackToTop';
+import { submitPuppyApplication } from '../lib/supabase';
 
 interface FormData {
   firstName: string;
@@ -46,12 +47,42 @@ const initialFormData: FormData = {
 export default function Apply() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Application submitted:', formData);
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const { error } = await submitPuppyApplication({
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        zip: formData.zip,
+        home_type: formData.homeType as 'house' | 'apartment' | 'condo' | 'other',
+        yard_type: formData.yard as 'fenced' | 'unfenced' | 'none',
+        previous_experience: formData.experience as 'first' | 'some' | 'experienced' | 'professional',
+        current_pets: formData.currentPets,
+        family_size: formData.familySize,
+        work_schedule: formData.workSchedule,
+        preferred_gender: formData.preferredGender as 'male' | 'female' | 'either',
+        comments: formData.comments,
+        agreed_to_terms: formData.agreeToTerms
+      });
+
+      if (error) throw error;
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Application submission error:', error);
+      setError(error instanceof Error ? error.message : 'Failed to submit application. Please try again.');
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -90,6 +121,11 @@ export default function Apply() {
             <p className="text-lg text-slate-600">
               Please fill out this application carefully. This helps us ensure our puppies go to the best possible homes.
             </p>
+            {error && (
+              <div className="mt-4 p-4 bg-red-50 text-red-700 rounded-lg">
+                {error}
+              </div>
+            )}
           </div>
 
           {/* Agreement Section */}
@@ -169,6 +205,7 @@ export default function Apply() {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -182,6 +219,7 @@ export default function Apply() {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -195,6 +233,7 @@ export default function Apply() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -208,6 +247,7 @@ export default function Apply() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -228,6 +268,7 @@ export default function Apply() {
                     value={formData.address}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -242,6 +283,7 @@ export default function Apply() {
                       value={formData.city}
                       onChange={handleInputChange}
                       required
+                      disabled={isSubmitting}
                       className="w-full px-4 py-2 border rounded-md"
                     />
                   </div>
@@ -255,6 +297,7 @@ export default function Apply() {
                       value={formData.state}
                       onChange={handleInputChange}
                       required
+                      disabled={isSubmitting}
                       className="w-full px-4 py-2 border rounded-md"
                     />
                   </div>
@@ -268,6 +311,7 @@ export default function Apply() {
                       value={formData.zip}
                       onChange={handleInputChange}
                       required
+                      disabled={isSubmitting}
                       className="w-full px-4 py-2 border rounded-md"
                     />
                   </div>
@@ -288,6 +332,7 @@ export default function Apply() {
                     value={formData.homeType}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   >
                     <option value="">Select...</option>
@@ -306,6 +351,7 @@ export default function Apply() {
                     value={formData.yard}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   >
                     <option value="">Select...</option>
@@ -330,6 +376,7 @@ export default function Apply() {
                     value={formData.experience}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   >
                     <option value="">Select...</option>
@@ -350,6 +397,7 @@ export default function Apply() {
                     className="w-full px-4 py-2 border rounded-md"
                     rows={3}
                     placeholder="Please list any current pets..."
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
@@ -363,6 +411,7 @@ export default function Apply() {
                     onChange={handleInputChange}
                     placeholder="Number of adults/children in household"
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -377,6 +426,7 @@ export default function Apply() {
                     onChange={handleInputChange}
                     placeholder="Typical work hours"
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   />
                 </div>
@@ -396,6 +446,7 @@ export default function Apply() {
                     value={formData.preferredGender}
                     onChange={handleInputChange}
                     required
+                    disabled={isSubmitting}
                     className="w-full px-4 py-2 border rounded-md"
                   >
                     <option value="">Select...</option>
@@ -415,6 +466,7 @@ export default function Apply() {
                     className="w-full px-4 py-2 border rounded-md"
                     rows={4}
                     placeholder="Any additional information you'd like to share..."
+                    disabled={isSubmitting}
                   />
                 </div>
               </div>
@@ -432,6 +484,7 @@ export default function Apply() {
                     checked={formData.agreeToTerms}
                     onChange={handleInputChange}
                     className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    disabled={isSubmitting}
                   />
                   <label htmlFor="agreeToTerms" className="ml-3 text-gray-700">
                     I confirm that all information provided is accurate and complete. I understand that any 
@@ -444,14 +497,19 @@ export default function Apply() {
             <div className="flex justify-center pt-6">
               <button
                 type="submit"
-                disabled={!formData.agreeToTerms}
+                disabled={!formData.agreeToTerms || isSubmitting}
                 className={`px-8 py-3 rounded-lg text-white font-semibold transition-all duration-300
-                  ${formData.agreeToTerms 
+                  ${formData.agreeToTerms && !isSubmitting
                     ? 'bg-blue-600 hover:bg-blue-700 hover:scale-105 hover:shadow-lg' 
                     : 'bg-gray-400 cursor-not-allowed'
                   }`}
               >
-                {formData.agreeToTerms ? 'Submit Application' : 'Please Accept Terms to Submit'}
+                {isSubmitting 
+                  ? 'Submitting...' 
+                  : formData.agreeToTerms 
+                    ? 'Submit Application' 
+                    : 'Please Accept Terms to Submit'
+                }
               </button>
             </div>
           </form>
