@@ -53,45 +53,45 @@ const services = [
 
 const testimonials = [
   {
-    name: 'John D.',
-    location: 'California',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    content: 'The entire experience was incredible. Our puppy is healthy, well-socialized, and exactly what we were looking for.',
-    rating: 4
-  },
-  {
     name: 'Sarah M.',
-    location: 'Texas',
+    location: 'Seattle, WA',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    content: 'Elite Bullies went above and beyond in helping us find our perfect companion. Highly recommended!',
+    content: 'Elite Bullies is the premier Micro Bully breeder in the Pacific Northwest. Our puppy is healthy, well-socialized, and exactly what we were looking for.',
     rating: 5
   },
   {
     name: 'Michael R.',
-    location: 'Florida',
+    location: 'Los Angeles, CA',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    content: 'The attention to detail in breeding and raising these puppies is outstanding. Our bully is not just beautiful but also has an amazing temperament.',
-    rating: 3
+    content: 'The shipping process to California was smooth and professional. Our Micro Bully arrived healthy and happy. Best cross-country breeder experience!',
+    rating: 5
   },
   {
     name: 'Emily W.',
-    location: 'New York',
+    location: 'New York, NY',
     image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    content: 'From the first contact to bringing our puppy home, the process was smooth and professional. They truly care about their dogs.',
+    content: 'Even from the East Coast, the entire process was seamless. Elite Bullies handled everything professionally, from ABKC registration to safe shipping.',
     rating: 5
   },
   {
     name: 'David K.',
-    location: 'Arizona',
+    location: 'Miami, FL',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    content: 'The health testing and guarantees gave us peace of mind. Our puppy is perfect in every way!',
-    rating: 4
+    content: 'Found Elite Bullies while searching for top breeders nationwide. The health testing and shipping to Florida exceeded our expectations!',
+    rating: 5
   },
   {
     name: 'Lisa P.',
-    location: 'Washington',
+    location: 'Houston, TX',
     image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
-    content: 'The ongoing support after bringing our puppy home has been fantastic. They really treat you like family.',
+    content: 'The best Micro American Bully breeder we found after searching across Texas. Worth choosing Elite Bullies for their quality and service.',
+    rating: 5
+  },
+  {
+    name: 'John D.',
+    location: 'Chicago, IL',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    content: 'Excellent experience shipping our puppy to Illinois. Elite Bullies provides nationwide service without compromising on quality or care.',
     rating: 5
   }
 ];
@@ -138,7 +138,7 @@ export default function Home() {
             </p>
             <Link
               to="/puppies"
-              className="bg-slate-800 text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-slate-700 transition-colors"
+              className="bg-slate-800 text-white px-10 py-4 rounded-lg text-lg font-semibold hover:bg-slate-700 transition-colors hover:scale-105 hover:shadow-lg"
             >
               View Available Puppies
             </Link>
@@ -153,7 +153,7 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-slate-800 mb-6">Welcome to Elite Bully Productions</h2>
             <div className="w-24 h-1 bg-slate-600 mx-auto mb-10"></div>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Micro American Bully breeder in LA with ABKC Micro American Bully puppies available for sale as well as stud service.
+              Premier Micro American Bully breeder in Washington State with ABKC Micro American Bully puppies available for sale as well as stud service.
             </p>
           </div>
 
@@ -202,7 +202,7 @@ export default function Home() {
                 <div className="mt-10">
                   <Link
                     to="/puppies"
-                    className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg shadow-sm text-white bg-slate-700 hover:bg-slate-600 transition-colors"
+                    className="inline-flex items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg shadow-sm text-white bg-slate-800 hover:bg-slate-700 transition-colors hover:scale-105 hover:shadow-lg"
                   >
                     View Available Puppies
                     <ChevronRight className="ml-2 h-6 w-6" />
@@ -475,6 +475,78 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Nationwide Shipping Section */}
+      <div className="py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-800 mb-6">Nationwide Puppy Shipping Available</h2>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+              We safely ship our American Bully puppies to all 50 states. Our proven shipping process ensures your puppy arrives healthy and happy.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {[
+              {
+                region: "West Coast",
+                states: "CA, OR, WA, NV",
+                shipping: "Next-day shipping available",
+                cities: "Los Angeles, San Francisco, Seattle, Portland, Las Vegas"
+              },
+              {
+                region: "East Coast",
+                states: "NY, NJ, MA, FL, GA",
+                shipping: "2-day shipping available",
+                cities: "New York City, Boston, Miami, Atlanta, Philadelphia"
+              },
+              {
+                region: "Central States",
+                states: "TX, IL, OH, MI, CO",
+                shipping: "2-day shipping available",
+                cities: "Houston, Chicago, Detroit, Denver, Columbus"
+              },
+              {
+                region: "Other Regions",
+                states: "All other states",
+                shipping: "2-3 day shipping available",
+                cities: "Contact us for specific shipping details"
+              }
+            ].map((region, index) => (
+              <div key={index} className="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                <h3 className="text-xl font-semibold text-slate-800 mb-4">{region.region}</h3>
+                <ul className="space-y-2 text-slate-600">
+                  <li><strong>States:</strong> {region.states}</li>
+                  <li><strong>Shipping:</strong> {region.shipping}</li>
+                  <li><strong>Major Cities:</strong> {region.cities}</li>
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-blue-50 p-8 rounded-xl border border-blue-100 max-w-3xl mx-auto">
+            <h3 className="text-xl font-semibold text-blue-900 mb-4">Shipping Process</h3>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <Check className="h-6 w-6 text-blue-500 mr-3 mt-1" />
+                <span>Professional pet shipping service with climate-controlled vehicles</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-6 w-6 text-blue-500 mr-3 mt-1" />
+                <span>Health certificate and travel documentation provided</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-6 w-6 text-blue-500 mr-3 mt-1" />
+                <span>Real-time tracking and updates throughout shipping</span>
+              </li>
+              <li className="flex items-start">
+                <Check className="h-6 w-6 text-blue-500 mr-3 mt-1" />
+                <span>Dedicated support team monitoring each shipment</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       {/* Client Gallery Section */}
       <section className="py-16 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -639,7 +711,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                 <div className="absolute bottom-4 left-4 text-white">
                   <p className="font-semibold">Family Moments</p>
-                  <p className="text-sm opacity-90">Atlas's special day</p>
+                  <p className="text-sm opacity-90">Max's special day</p>
                 </div>
               </div>
             </div>
@@ -662,7 +734,7 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <p className="text-slate-600 mb-6">Join our growing family of happy pet owners</p>
-            <Link to="/available-puppies" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-blue-700 hover:scale-105 hover:shadow-lg">
+            <Link to="/puppies" className="inline-block bg-slate-800 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-slate-700 hover:scale-105 hover:shadow-lg">
               Find Your Perfect Puppy
             </Link>
           </div>
@@ -696,12 +768,12 @@ export default function Home() {
                 Premium American Bully breeder committed to excellence in breeding and raising exceptional companions.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                <a href="https://www.facebook.com/elitebullies" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
                   </svg>
                 </a>
-                <a href="#" className="text-slate-400 hover:text-white transition-colors">
+                <a href="https://www.instagram.com/elitebullies" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/>
                   </svg>
@@ -722,7 +794,6 @@ export default function Home() {
                 <li>
                   <Link to="/mission" className="text-slate-400 hover:text-white transition-colors">About Us</Link>
                 </li>
-               
               </ul>
             </div>
 
@@ -734,9 +805,8 @@ export default function Home() {
                   <Link to="/puppies" className="text-slate-400 hover:text-white transition-colors">Puppy Sales</Link>
                 </li>
                 <li>
-                  <Link to="puppies/#studs" className="text-slate-400 hover:text-white transition-colors">Stud Services</Link>
+                  <Link to="/puppies#studs" className="text-slate-400 hover:text-white transition-colors">Stud Services</Link>
                 </li>
-               
               </ul>
             </div>
 
@@ -761,7 +831,7 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-slate-400">Los Angeles, CA</span>
+                  <span className="text-slate-400">Seattle, WA</span>
                 </li>
               </ul>
             </div>

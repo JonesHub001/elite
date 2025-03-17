@@ -1,0 +1,18 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://elitebullies.com/sitemap.xml
+
+# Prevent crawling of admin or private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /checkout/
+Disallow: /cart/
+
+# Allow crawling of important sections
+Allow: /puppies/
+Allow: /mission/
+Allow: /past-productions/
+Allow: /apply/ 

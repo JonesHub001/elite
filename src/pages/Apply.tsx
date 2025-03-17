@@ -303,7 +303,7 @@ export default function Apply() {
                     title="Please enter only numbers, spaces, or + symbol"
                   />
                   <p className="mt-1 text-sm text-gray-500">
-                    Enter numbers only, with or without country code (e.g., 1234567890 or +11234567890)
+                    Enter numbers only, with or without country code (e.g., 1265445434 or +11234567890)
                   </p>
                 </div>
               </div>
