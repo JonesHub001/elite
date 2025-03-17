@@ -27,7 +27,7 @@ export default function ApplicationStatus() {
       case 'approved':
         return 'Congratulations! Your application has been approved. Next steps:\n' +
           '1. Submit your deposit of $1000 within 24 hours to secure your puppy\n' +
-          '2. Contact us at 232-445-4445 or elitebullies@gmail.com\n' +
+          '2. Contact us at 232-445-4445 or topelitebullies@gmail.com\n' +
           '3. We\'ll discuss puppy selection and delivery options once deposit is received';
       case 'pending':
         return 'Your application is currently under review. We\'ll contact you once a decision has been made.';
@@ -266,11 +266,11 @@ export default function ApplicationStatus() {
                     <div className="space-y-2">
                       <div className="flex items-center gap-2 text-blue-700">
                         <Phone className="h-5 w-5" />
-                        <p>Call or text: <a href="tel:2324454445" className="underline">232-445-4445</a></p>
+                        {/* <p>Call or text: <a href="tel:2324454445" className="underline">232-445-4445</a></p> */}
                       </div>
                       <div className="flex items-center gap-2 text-blue-700">
                         <Mail className="h-5 w-5" />
-                        <p>Email: <a href="mailto:elitebullies@gmail.com" className="underline">elitebullies@gmail.com</a></p>
+                        <p>Email: <a href="mailto:topelitebullies@gmail.com" className="underline">topelitebullies@gmail.com</a></p>
                       </div>
                     </div>
                     <p className="mt-3 text-sm text-blue-600">

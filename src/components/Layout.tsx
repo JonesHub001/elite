@@ -107,8 +107,10 @@ const Footer = () => {
               <a href="https://www.facebook.com/elitebullies" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="mailto:elitebullies@gmail.com" className="text-slate-400 hover:text-white">
-                <Mail className="h-6 w-6" />
+              <a href="mailto:topelitebullies@gmail.com" className="text-slate-400 hover:text-white">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
               </a>
             </div>
           </div>
@@ -141,7 +143,7 @@ const Footer = () => {
             <ul className="space-y-2 text-slate-400">
               <li>Seattle, Washington</li>
               <li>Phone: (232) 445-4445</li>
-              <li>Email: elitebullies@gmail.com</li>
+              <li>Email: topelitebullies@gmail.com</li>
               <li>Hours: 9AM - 6PM PST</li>
             </ul>
           </div>
@@ -154,8 +156,8 @@ const Footer = () => {
               © {new Date().getFullYear()} Elite Bullies. All rights reserved.
             </p>
             <div className="flex space-x-4 md:justify-end text-sm text-slate-400">
-              <a href="/privacy-policy" className="hover:text-white">Privacy Policy</a>
-              <a href="/terms" className="hover:text-white">Terms of Service</a>
+              <Link to="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-white">Terms of Service</Link>
               <a href="/sitemap.xml" className="hover:text-white">Sitemap</a>
             </div>
           </div>

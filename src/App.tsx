@@ -7,6 +7,8 @@ import PastProductions from './pages/PastProductions';
 import Mission from './pages/Mission';
 import Apply from './pages/Apply';
 import ApplicationStatus from './pages/ApplicationStatus';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 import EmailTest from './components/EmailTest';
 import { initEmailJS } from './lib/emailjsInit';
 
@@ -25,6 +27,8 @@ function App() {
           <Route path="/mission" element={<Mission />} />
           <Route path="/apply" element={<Apply />} />
           <Route path="/application-status" element={<ApplicationStatus />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
           <Route path="/email-test" element={<EmailTest />} />
         </Routes>
       </Layout>

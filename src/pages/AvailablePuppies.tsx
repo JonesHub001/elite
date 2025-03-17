@@ -443,7 +443,7 @@ export default function AvailablePuppies() {
                         </div>
                       </div>
                       <a
-                        href="mailto:elitebullies@gmail.com"
+                        href="mailto:topelitebullies@gmail.com"
                         className="btn-primary"
                       >
                         Inquire About Breeding
