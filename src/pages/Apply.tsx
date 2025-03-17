@@ -105,7 +105,7 @@ export default function Apply() {
       });
 
       if (submitError) throw submitError;
-      setSubmitted(true);
+    setSubmitted(true);
     } catch (error) {
       console.error('Application submission error:', error);
       setError(error instanceof Error ? error.message : 'Failed to submit application. Please try again.');
@@ -124,10 +124,10 @@ export default function Apply() {
         [name]: sanitizedValue
       }));
     } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
-      }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
+    }));
     }
   };
 
@@ -152,8 +152,8 @@ export default function Apply() {
               to="/" 
               className="block w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
             >
-              Return to Home
-            </Link>
+            Return to Home
+          </Link>
           </div>
         </div>
       </div>
@@ -234,10 +234,10 @@ export default function Apply() {
               <div className="bg-amber-50 p-6 rounded-lg">
                 <p className="text-amber-900">
                   Thank you for taking the time to fill out this application. This will ensure we can place all of our puppies in the best homes and that you are prepared for this commitment. We appreciate your interest in our puppies!
-                </p>
-              </div>
-            </div>
+            </p>
           </div>
+        </div>
+      </div>
 
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Personal Information */}

@@ -405,16 +405,16 @@ export default function Home() {
                     <h3 className="text-xl font-semibold mb-3 text-slate-800">{puppy.name}</h3>
                     <p className="text-slate-600 text-lg">
                       {puppy.details}
-                    </p>
-                    <Link
-                      to="/puppies"
+                  </p>
+                  <Link
+                    to="/puppies"
                       className="mt-6 inline-block text-slate-600 font-semibold hover:text-slate-800 transition-all duration-300 hover:translate-x-2"
-                    >
-                      Learn More →
-                    </Link>
-                  </div>
+                  >
+                    Learn More →
+                  </Link>
                 </div>
-              ))}
+              </div>
+            ))}
             </div>
           </div>
         </div>
@@ -447,16 +447,16 @@ export default function Home() {
               ]}
               className="testimonials-slider"
             >
-              {testimonials.map((testimonial, index) => (
+            {testimonials.map((testimonial, index) => (
                 <div key={index} className="px-6">
                   <div className="bg-white p-8 rounded-xl shadow-md h-full transform transition-transform duration-300 hover:scale-[1.02]">
                     <div className="flex items-center mb-6">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
                         className="w-14 h-14 rounded-full object-cover"
-                      />
-                      <div className="ml-4">
+                  />
+                  <div className="ml-4">
                         <h3 className="font-semibold text-lg text-slate-800">{testimonial.name}</h3>
                         <p className="text-slate-600">{testimonial.location}</p>
                       </div>
@@ -751,7 +751,7 @@ export default function Home() {
             </p>
           </div>
           <div className="max-w-xl mx-auto">
-            <NewsletterForm />
+      <NewsletterForm />
           </div>
         </div>
       </div>

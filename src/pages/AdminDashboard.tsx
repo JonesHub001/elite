@@ -50,54 +50,53 @@ export default function AdminDashboard() {
       setUpdateLoading(id);
       console.log('Updating application:', id, 'to status:', status);
 
-      // First, update the status
-      const { error: updateError } = await supabase
+      // Update the status and return the updated record
+      const { data: updatedData, error: updateError } = await supabase
         .from('puppy_applications')
         .update({ status })
-        .eq('id', id);
+        .eq('id', id)
+        .select('*')
+        .single();
 
       if (updateError) {
         console.error('Database update error:', updateError);
         throw updateError;
       }
 
-      // Then fetch the updated record
-      const { data: updatedData, error: fetchError } = await supabase
-        .from('puppy_applications')
-        .select('*')
-        .eq('id', id)
-        .single();
-
-      if (fetchError) {
-        console.error('Error fetching updated data:', fetchError);
-        throw fetchError;
+      if (!updatedData) {
+        throw new Error('No data returned after update');
       }
 
       console.log('Update successful:', updatedData);
 
-      // Send email notification
-      if (updatedData) {
-        console.log('Sending email notification to:', updatedData.email);
-        const nextSteps = status === 'approved' 
-          ? 'Congratulations! Your application has been approved. Next steps:\n1. Submit your deposit of $1000 within 24 hours to secure your puppy\n2. Contact us at topelitebullies@gmail.com\n3. We\'ll discuss puppy selection and delivery options once deposit is received'
-          : 'Unfortunately, your application was not approved at this time. Feel free to contact us if you have any questions.';
+      // Update local state immediately
+      setApplications(prevApplications => 
+        prevApplications.map(app => 
+          app.id === id ? { ...app, status } : app
+        )
+      );
 
-        try {
-          const emailResult = await sendStatusEmail({
-            email: updatedData.email,
-            to_name: `${updatedData.first_name} ${updatedData.last_name}`,
-            application_status: status,
-            next_steps: nextSteps,
-            reply_to: updatedData.email
-          });
-          console.log('Email sent successfully:', emailResult);
-        } catch (emailError) {
-          console.error('Email sending failed:', emailError);
-          // Continue even if email fails
-        }
+      // Send email notification
+      console.log('Sending email notification to:', updatedData.email);
+      const nextSteps = status === 'approved' 
+        ? 'Congratulations! Your application has been approved. Next steps:\n1. Submit your deposit of $1000 within 24 hours to secure your puppy\n2. Contact us at topelitebullies@gmail.com\n3. We\'ll discuss puppy selection and delivery options once deposit is received'
+        : 'Unfortunately, your application was not approved at this time. Feel free to contact us if you have any questions.';
+
+      try {
+        const emailResult = await sendStatusEmail({
+          email: updatedData.email,
+          to_name: `${updatedData.first_name} ${updatedData.last_name}`,
+          application_status: status,
+          next_steps: nextSteps,
+          reply_to: updatedData.email
+        });
+        console.log('Email sent successfully:', emailResult);
+      } catch (emailError) {
+        console.error('Email sending failed:', emailError);
+        // Continue even if email fails
       }
 
-      // Refresh applications list
+      // Refresh applications list to ensure we have the latest data
       await fetchApplications();
       
     } catch (error) {

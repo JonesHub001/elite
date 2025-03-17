@@ -344,11 +344,11 @@ export default function AvailablePuppies() {
                   <div id='stud' className="grid grid-cols-1 gap-4 p-6 bg-gray-50">
                     {puppy.images.map((image, index) => (
                       <div key={index} className="overflow-hidden rounded-lg shadow-md group">
-                        <img
-                          src={image}
-                          alt={`${puppy.name} - Photo ${index + 1}`}
+                      <img
+                        src={image}
+                        alt={`${puppy.name} - Photo ${index + 1}`}
                           className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
+                      />
                       </div>
                     ))}
                   </div>
@@ -444,8 +444,8 @@ export default function AvailablePuppies() {
                       </div>
                       <a
                         href="mailto:topelitebullies@gmail.com"
-                        className="btn-primary"
-                      >
+              className="btn-primary"
+            >
                         Inquire About Breeding
                       </a>
                     </div>
