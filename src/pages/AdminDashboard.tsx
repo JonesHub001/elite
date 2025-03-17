@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { PuppyApplication } from '../types/supabase';
-import { CheckCircle, XCircle, Clock, Search, Filter } from 'lucide-react';
+import { CheckCircle, XCircle, Clock, Search, Filter, LogOut } from 'lucide-react';
 import { sendStatusEmail } from '../lib/emailService';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminDashboard() {
   const [applications, setApplications] = useState<PuppyApplication[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'pending' | 'approved' | 'rejected'>('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [updateLoading, setUpdateLoading] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAdminAuthenticated');
+    if (!isAuthenticated) {
+      navigate('/admin-login');
+      return;
+    }
     fetchApplications();
-  }, []);
+  }, [filter]); // Re-fetch when filter changes
 
   const fetchApplications = async () => {
     try {
-      console.log('Fetching applications...');
+      console.log('Fetching applications with filter:', filter);
       let query = supabase
         .from('puppy_applications')
         .select('*')
@@ -28,8 +36,6 @@ export default function AdminDashboard() {
 
       const { data, error } = await query;
       console.log('Fetched data:', data);
-      console.log('Error if any:', error);
-      
       if (error) throw error;
       setApplications(data || []);
     } catch (error) {
@@ -41,35 +47,70 @@ export default function AdminDashboard() {
 
   const updateApplicationStatus = async (id: string, status: 'approved' | 'rejected') => {
     try {
-      const { data, error } = await supabase
+      setUpdateLoading(id);
+      console.log('Updating application:', id, 'to status:', status);
+
+      // First, update the status
+      const { error: updateError } = await supabase
         .from('puppy_applications')
         .update({ status })
+        .eq('id', id);
+
+      if (updateError) {
+        console.error('Database update error:', updateError);
+        throw updateError;
+      }
+
+      // Then fetch the updated record
+      const { data: updatedData, error: fetchError } = await supabase
+        .from('puppy_applications')
+        .select('*')
         .eq('id', id)
-        .select()
         .single();
 
-      if (error) throw error;
+      if (fetchError) {
+        console.error('Error fetching updated data:', fetchError);
+        throw fetchError;
+      }
+
+      console.log('Update successful:', updatedData);
 
       // Send email notification
-      if (data) {
+      if (updatedData) {
+        console.log('Sending email notification to:', updatedData.email);
         const nextSteps = status === 'approved' 
           ? 'Congratulations! Your application has been approved. Next steps:\n1. Submit your deposit of $1000 within 24 hours to secure your puppy\n2. Contact us at topelitebullies@gmail.com\n3. We\'ll discuss puppy selection and delivery options once deposit is received'
           : 'Unfortunately, your application was not approved at this time. Feel free to contact us if you have any questions.';
 
-        await sendStatusEmail({
-          email: data.email,
-          to_name: `${data.first_name} ${data.last_name}`,
-          application_status: status,
-          next_steps: nextSteps,
-          reply_to: data.email
-        });
+        try {
+          const emailResult = await sendStatusEmail({
+            email: updatedData.email,
+            to_name: `${updatedData.first_name} ${updatedData.last_name}`,
+            application_status: status,
+            next_steps: nextSteps,
+            reply_to: updatedData.email
+          });
+          console.log('Email sent successfully:', emailResult);
+        } catch (emailError) {
+          console.error('Email sending failed:', emailError);
+          // Continue even if email fails
+        }
       }
 
       // Refresh applications list
-      fetchApplications();
+      await fetchApplications();
+      
     } catch (error) {
       console.error('Error updating application:', error);
+      alert('Failed to update application status. Please try again.');
+    } finally {
+      setUpdateLoading(null);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAdminAuthenticated');
+    navigate('/admin-login');
   };
 
   const filteredApplications = applications.filter(app => 
@@ -94,7 +135,7 @@ export default function AdminDashboard() {
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold">Application Management</h1>
-            <div className="flex gap-4">
+            <div className="flex items-center gap-4">
               <div className="relative">
                 <Search className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
@@ -115,6 +156,13 @@ export default function AdminDashboard() {
                 <option value="approved">Approved</option>
                 <option value="rejected">Rejected</option>
               </select>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-4 py-2 text-red-600 hover:text-red-800"
+              >
+                <LogOut className="h-5 w-5" />
+                Logout
+              </button>
             </div>
           </div>
 
@@ -168,15 +216,21 @@ export default function AdminDashboard() {
                           <div className="flex gap-2">
                             <button
                               onClick={() => updateApplicationStatus(application.id, 'approved')}
-                              className="text-green-600 hover:text-green-900"
+                              disabled={updateLoading === application.id}
+                              className={`text-green-600 hover:text-green-900 ${
+                                updateLoading === application.id ? 'opacity-50 cursor-not-allowed' : ''
+                              }`}
                             >
-                              Approve
+                              {updateLoading === application.id ? 'Processing...' : 'Approve'}
                             </button>
                             <button
                               onClick={() => updateApplicationStatus(application.id, 'rejected')}
-                              className="text-red-600 hover:text-red-900"
+                              disabled={updateLoading === application.id}
+                              className={`text-red-600 hover:text-red-900 ${
+                                updateLoading === application.id ? 'opacity-50 cursor-not-allowed' : ''
+                              }`}
                             >
-                              Reject
+                              {updateLoading === application.id ? 'Processing...' : 'Reject'}
                             </button>
                           </div>
                         )}
@@ -185,6 +239,11 @@ export default function AdminDashboard() {
                   ))}
                 </tbody>
               </table>
+              {filteredApplications.length === 0 && (
+                <div className="text-center py-8 text-gray-500">
+                  No applications found
+                </div>
+              )}
             </div>
           )}
         </div>

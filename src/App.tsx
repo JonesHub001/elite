@@ -12,6 +12,7 @@ import TermsOfService from './pages/TermsOfService';
 import EmailTest from './components/EmailTest';
 import { initEmailJS } from './lib/emailjsInit';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminLogin from './components/AdminLogin';
 
 function App() {
   useEffect(() => {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/email-test" element={<EmailTest />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </Layout>

@@ -90,4 +90,18 @@ CREATE POLICY "Allow updating application status"
 ON puppy_applications
 FOR UPDATE
 USING (true)
-WITH CHECK (true); 
+WITH CHECK (true);
+
+-- Grant permissions for updating applications
+ALTER TABLE puppy_applications ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Enable update for authenticated users" ON puppy_applications;
+CREATE POLICY "Enable update for authenticated users" 
+ON puppy_applications FOR UPDATE 
+USING (true) 
+WITH CHECK (true);
+
+DROP POLICY IF EXISTS "Enable select for authenticated users" ON puppy_applications;
+CREATE POLICY "Enable select for authenticated users" 
+ON puppy_applications FOR SELECT 
+USING (true); 
