@@ -142,7 +142,7 @@ const Footer = () => {
             <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2 text-slate-400">
               <li>Seattle, Washington</li>
-              <li>Phone: (232) 445-4445</li>
+              {/* <li>Phone: (232) 445-4445</li> */}
               <li>Email: topelitebullies@gmail.com</li>
               <li>Hours: 9AM - 6PM PST</li>
             </ul>
