@@ -74,4 +74,20 @@ create policy "Enable update for users based on email" on puppy_applications for
 -- Create indexes
 create index idx_newsletter_email on newsletter_subscribers(email);
 create index idx_applications_email on puppy_applications(email);
-create index idx_applications_status on puppy_applications(status); 
+create index idx_applications_status on puppy_applications(status);
+
+-- Enable row level security
+ALTER TABLE puppy_applications ENABLE ROW LEVEL SECURITY;
+
+-- Create policy to allow reading all applications
+CREATE POLICY "Allow reading all applications"
+ON puppy_applications
+FOR SELECT
+USING (true);
+
+-- Create policy to allow updating application status
+CREATE POLICY "Allow updating application status"
+ON puppy_applications
+FOR UPDATE
+USING (true)
+WITH CHECK (true); 

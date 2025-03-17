@@ -12,7 +12,7 @@ const EmailTest: React.FC = () => {
     setStatus({ type: '', message: '' });
 
     try {
-      const result = await sendTestEmail(email);
+      const result = await sendTestEmail();
       setStatus({
         type: result.success ? 'success' : 'error',
         message: result.message

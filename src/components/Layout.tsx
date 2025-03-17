@@ -144,7 +144,7 @@ const Footer = () => {
               <li>Seattle, Washington</li>
               {/* <li>Phone: (232) 445-4445</li> */}
               <li>Email: topelitebullies@gmail.com</li>
-              <li>Hours: 9AM - 6PM PST</li>
+              <li>Hours: 8AM - 6PM PST</li>
             </ul>
           </div>
         </div>
