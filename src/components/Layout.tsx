@@ -128,10 +128,10 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
-              <li><a href="https://theabkcdogs.org" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">ABKC Registry</a></li>
-              <li><a href="https://www.akc.org/dog-breeds/american-bully/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">AKC Breed Info</a></li>
-              <li><a href="https://www.ukcdogs.com/american-bully" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">UKC Breed Standard</a></li>
-              <li><a href="https://bullyking.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">Bully King Magazine</a></li>
+              <li><a href="https://abkcdogs.net" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">ABKC Registry</a></li>
+              <li><a href="https://www.abkcdogs.net" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">ABKC Breed Standard</a></li>
+              <li><a href="https://www.abkcdogs.net/breed2" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">AKC Breed Standard</a></li>
+              <li><a href="https://bullymagazine.co/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">Bully King Magazine</a></li>
             </ul>
           </div>
 
