@@ -231,9 +231,9 @@ export default function AvailablePuppies() {
               </div>
             </div>
             <div className="flex items-center">
-              <a href="sms:+1234567890" className="flex items-center hover:text-blue-100">
+              <a href="mailto:topelitebullies@gmail.com" className="flex items-center hover:text-blue-100">
                 <Phone className="h-4 w-4 mr-2" />
-                <span>(123) 456-7890</span>
+                <span>topelitebullies@gmail.com</span>
               </a>
             </div>
           </div>
@@ -270,7 +270,7 @@ export default function AvailablePuppies() {
             <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
               <h2 className="font-semibold text-blue-800 mb-2">Important Notice</h2>
               <p className="text-sm text-blue-600">
-                We prioritize communication via text message for faster response. Please text us at (123) 456-7890 
+                  We prioritize communication via text message for faster response. Please text us at topelitebullies@gmail.com 
                 for inquiries about our puppies or stud services. We'll respond within 24 hours.
               </p>
             </div>
@@ -526,11 +526,11 @@ export default function AvailablePuppies() {
               <div className="flex flex-col items-center space-y-4">
                 <p className="text-sm text-gray-500">
                   For detailed information about our breeding program and stud service requirements, 
-                  please text us at (123) 456-7890
+                  please text us at topelitebullies@gmail.com
                 </p>
                 <div className="flex space-x-4">
                   <a
-                    href="sms:+1234567890"
+                    href="mailto:topelitebullies@gmail.com"
                     className="btn-primary flex items-center"
                   >
                     <MessageSquare className="h-5 w-5 mr-2" />
