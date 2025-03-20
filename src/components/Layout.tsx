@@ -98,7 +98,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4">Elite Bullies</h3>
             <p className="text-slate-400 mb-4">
-              Premier Micro American Bully breeder in Seattle, Washington. ABKC registered puppies and professional stud services.
+            Our main focus is connecting loving homes with exceptional puppies through partnerships with elite breeders. We strive to make the perfect match between families and their future four-legged companions.
             </p>
             <div className="flex space-x-4">
               <a href="https://www.instagram.com/elitebullies" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">
@@ -141,7 +141,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2 text-slate-400">
-              <li>Seattle, Washington</li>
+              {/* <li>Seattle, Washington</li> */}
               {/* <li>Phone: (232) 445-4445</li> */}
               <li>Email: topelitebullies@gmail.com</li>
               <li>Hours: 8AM - 6PM PST</li>
