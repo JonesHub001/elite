@@ -133,8 +133,8 @@ export default function Home() {
               Elite American Bully Puppies
             </h1>
             <p className="text-2xl mb-10 leading-relaxed">
-              Breeding exceptional American Bullies with perfect temperament, 
-              outstanding health, and superior genetics.
+              Bringing exceptional American Bullies with perfect temperament, 
+              outstanding health, and superior genetics to loving homes.
             </p>
             <Link
               to="/puppies"

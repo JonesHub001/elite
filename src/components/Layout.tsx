@@ -101,10 +101,10 @@ const Footer = () => {
             Our main focus is connecting loving homes with exceptional puppies through partnerships with elite breeders. We strive to make the perfect match between families and their future four-legged companions.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.instagram.com/elitebullies" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">
+              {/* <a href="https://www.instagram.com/elitebullies" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">
                 <Instagram className="h-6 w-6" />
-              </a>
-              <a href="https://www.facebook.com/elitebullies" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">
+              </a> */}
+              <a href="https://www.facebook.com/profile.php?id=61574200281449" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white">
                 <Facebook className="h-6 w-6" />
               </a>
               <a href="mailto:topelitebullies@gmail.com" className="text-slate-400 hover:text-white">
